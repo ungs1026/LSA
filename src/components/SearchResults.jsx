@@ -11,6 +11,7 @@ const SearchResults = ({ results, onResultClick }) => {
     'bossRaids': '보스 레이드',
     'arksData': '아크',
     'stories': '스토리',
+    'classDB': '직업',
   };
 
   return (

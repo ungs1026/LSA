@@ -1,11 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { classData, classSpriteImage } from '../data/classDB.js';
 
 const SpriteIcon = ({ pos, type, size }) => {
   if (!pos || typeof pos.x === 'undefined' || typeof pos.y === 'undefined') {
     return null;
   }
-
   return (
     <div
       className={`class-sprite-icon ${type}-icon`}
@@ -19,10 +18,26 @@ const SpriteIcon = ({ pos, type, size }) => {
   );
 };
 
-const ClassPage = () => {
+const ClassPage = ({ initialData }) => {
   const [activeBaseClass, setActiveBaseClass] = useState(classData[0]);
   const [selectedClass, setSelectedClass] = useState(classData[0]);
   const [animationKey, setAnimationKey] = useState(0);
+
+  // 검색 결과 또는 초기 데이터 처리를 위한 useEffect
+  useEffect(() => {
+    if (initialData && initialData.type === 'class') {
+      const targetClass = initialData;
+      // 전달된 데이터가 세부 클래스인지, 기본 클래스인지 확인
+      const parentBaseClass = classData.find(base => base.id === targetClass.baseClassId || base.id === targetClass.id);
+      
+      if (parentBaseClass) {
+        setActiveBaseClass(parentBaseClass);
+        setSelectedClass(targetClass);
+        setAnimationKey(prevKey => prevKey + 1);
+      }
+    }
+  }, [initialData]);
+
 
   const handleBaseClassSelect = (baseClass) => {
     setActiveBaseClass(baseClass);
@@ -35,7 +50,7 @@ const ClassPage = () => {
     setAnimationKey(prevKey => prevKey + 1);
   };
   
-  if (!activeBaseClass) {
+  if (!activeBaseClass || !selectedClass) {
     return <div>클래스 데이터를 불러오는 중...</div>;
   }
 
@@ -44,7 +59,6 @@ const ClassPage = () => {
 
   return (
     <div className="page-content class-page-container">
-      {/* 중앙 및 좌측 패널 (메인 콘텐츠) */}
       <div className="class-main-panel" style={{ backgroundImage: `url(${activeBaseClass.backgroundImage})` }}>
         <div className="class-preview-image-wrapper">
           <img
@@ -55,7 +69,6 @@ const ClassPage = () => {
           />
         </div>
         <div className="class-info-panel">
-          {/* 내용을 감싸는 새로운 div 추가 */}
           <div className="class-info-content-box">
             <h2 className="class-info-name">{selectedClass.name}</h2>
             
@@ -89,7 +102,6 @@ const ClassPage = () => {
         </div>
       </div>
 
-      {/* 우측 패널 (클래스 선택 목록) */}
       <div className="class-right-panel">
         <div className="base-class-list">
           {classData.map(baseClass => (
