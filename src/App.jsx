@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-// db.js와 함께 classDB.js에서도 데이터를 가져옵니다.
 import { menuItems, arksData, stories, oldEsthers, currentEsthers, commanders, bossRaids } from './data/db';
 import { classData } from './data/classDB.js';
 import MainMenu from './components/MainMenu';
@@ -11,6 +10,7 @@ import BossPage from './pages/BossPage';
 import WorldviewPage from './pages/WorldviewPage';
 import ArkPage from './pages/ArkPage';
 import ClassPage from './pages/ClassPage';
+import LoadingScreen from './components/LoadingScreen'; // 로딩 스크린 컴포넌트 import
 
 const App = () => {
   const [currentMenuIndex, setCurrentMenuIndex] = useState(0);
@@ -22,13 +22,13 @@ const App = () => {
   
   const [initialData, setInitialData] = useState(null);
 
+  // 로딩 상태를 관리하기 위한 state 추가
+  const [isLoading, setIsLoading] = useState(true);
+
   useEffect(() => {
-    // 검색 인덱스 생성 로직에 classData 추가
     const allClassData = [];
     classData.forEach(baseClass => {
-      // 기본 클래스 추가
       allClassData.push({ ...baseClass, source: 'classDB', page: 'class', type: 'class' });
-      // 세부 클래스 추가
       if (baseClass.advancedClasses) {
         baseClass.advancedClasses.forEach(advClass => {
           allClassData.push({ ...advClass, baseClassId: baseClass.id, source: 'classDB', page: 'class', type: 'class' });
@@ -37,7 +37,7 @@ const App = () => {
     });
 
     const allData = [
-      ...allClassData, // 통합된 클래스 데이터 추가
+      ...allClassData,
       ...oldEsthers.map(item => ({ ...item, source: 'allEsthersData', page: 'characters', type: 'character' })),
       ...currentEsthers.map(item => ({ ...item, source: 'allEsthersData', page: 'characters', type: 'character' })),
       ...commanders.map(item => ({ ...item, source: 'commanders', page: 'characters', type: 'character' })),
@@ -116,6 +116,12 @@ const App = () => {
         return null;
     }
   };
+  
+  // 로딩이 끝나면(isLoading이 false가 되면) 앱을 렌더링
+  if (isLoading) {
+    // onAnimationComplete 콜백으로 isLoading 상태를 false로 변경
+    return <LoadingScreen onAnimationComplete={() => setIsLoading(false)} />;
+  }
 
   return (
     <div id="app-container">
@@ -127,7 +133,7 @@ const App = () => {
             <h1 id="home-title">Lost Ark Archives</h1>
             <div className="search-container">
               <SearchBar query={searchQuery} onQueryChange={handleQueryChange} onSearch={() => { if(searchResults.length > 0) handleResultClick(searchResults[0]) }} />
-              <SearchResults results={searchResults} onResultClick={handleResultClick} />
+              <SearchResults query={searchQuery} results={searchResults} onResultClick={handleResultClick} />
             </div>
           </div>
           <MainMenu

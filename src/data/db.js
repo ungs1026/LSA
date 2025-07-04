@@ -97,7 +97,7 @@ import arkElpisImg from '../assets/images/ark/elpis.png';
 import arkRadiceImg from '../assets/images/ark/radice.png';
 import arkCartaImg from '../assets/images/ark/carta.png';
 import arkKayangelImg from '../assets/images/ark/kayangel.png';
-import arkAstaHoverImg from '../assets/images/ark/asta_nb.png';
+import arkAstaHoverImg from '../assets/images/ark/asta_nb.png'; 
 import arkOrtusHoverImg from '../assets/images/ark/ortus_nb.png';
 import arkAgatonHoverImg from '../assets/images/ark/agaton_nb.png';
 import arkElpisHoverImg from '../assets/images/ark/elpis_nb.png';
