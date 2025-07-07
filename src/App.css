@@ -100,7 +100,7 @@ body { background-color: var(--color-background); color: var(--color-text); font
   align-items: center;
 }
 
-.loading-text, .loading-image {
+.loading-text, .loading-image-wrapper {
   position: absolute;
   top: 0;
   left: 0;
@@ -121,9 +121,10 @@ body { background-color: var(--color-background); color: var(--color-text); font
   align-items: center;
 }
 
-.loading-image {
-  object-fit: contain;
-  /* 처음에는 이미지가 보이지 않도록 투명도 0 */
+.loading-image-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   opacity: 0;
 }
 
@@ -471,7 +472,7 @@ body { background-color: var(--color-background); color: var(--color-text); font
 /* --- 반응형 디자인 --- */
 @media (max-width: 1200px) { .story-map-container { width: 95%; height: auto; aspect-ratio: 1200 / 662; } }
 @media (max-width: 1024px) { 
-  .character-modal-content.new-layout, .ark-page-container, .class-page-container { flex-direction: column; height: auto; max-height: 85vh; overflow-y: auto; } 
+  .character-modal-content.new-layout, .ark-page-container, .class-page-container { flex-direction: column; height: auto; overflow-y: auto; } 
   .char-info-container { flex-direction: column; } 
   .char-info-left, .char-info-right, .ark-left-panel, .ark-center-panel, .ark-right-panel, .class-main-panel, .class-right-panel { flex-basis: auto; width: 100%; border: none; } 
   .char-info-right { border-top: 1px solid rgba(163, 134, 90, 0.2); } 
@@ -485,16 +486,52 @@ body { background-color: var(--color-background); color: var(--color-text); font
   .boss-modal-right { overflow-y: visible; }
 
   .ark-page-container { padding: 20px; }
-  .ark-center-panel { order: -1; margin-bottom: 20px; }
+  .ark-center-panel { margin-bottom: 20px; }
 
   .ark-left-panel, .ark-right-panel {
     overflow-y: visible;
   }
 
-  .class-page-container { padding: 20px; }
-  .class-main-panel { min-height: 450px; margin-bottom: 20px; }
-  .class-info-panel { width: 100%; margin-left: 0; background: linear-gradient(to right, transparent 20%, rgba(0,0,0,0.7) 50%); text-align: center; }
-  .class-info-details .detail-content { justify-content: center; }
+  /* ClassPage 반응형 스타일 수정 */
+  .class-page-container {
+    flex-direction: column; /* 자식 요소들을 세로로 쌓음 */
+    padding: 80px 20px 20px;
+    height: 100%;
+  }
+  
+  /* 데스크탑에서만 사용되는 메인 패널은 모바일에선 숨김 처리 */
+  .class-main-panel {
+    display: none;
+  }
+  
+  /* 모바일에서만 보이는 이미지, 설명 패널 스타일 */
+  .class-image-panel-mobile, .class-info-panel-mobile {
+    display: block; /* 기본 블록 요소로 표시 */
+    width: 100%;
+    margin-bottom: 20px;
+  }
+
+  /* 모바일에서 ClassPage 이미지 스타일 초기화 및 재정의 */
+  .class-image-panel-mobile .class-preview-image {
+    width: 100%;
+    height: 100%;
+    /* 데스크탑용 복잡한 transform 속성을 무효화 */
+    transform: none !important; 
+    /* 데스크탑용 애니메이션 대신 간단한 페이드인 효과 적용 */
+    animation: fadeIn 0.5s; 
+  }
+
+  /* 메뉴 패널을 가장 위로 올림 */
+  .class-right-panel {
+    order: -1;
+    width: 100%;
+    margin-bottom: 20px;
+  }
+
+  .identity-icon, .weapon-icon  {
+    transform: scale(1);
+    margin: 0;
+  }
 }
 @media (max-width: 768px) { 
   #main-background { 
@@ -507,7 +544,8 @@ body { background-color: var(--color-background); color: var(--color-text); font
   .page-title { font-size: 2rem; } 
   .boss-grid { grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin-top: 0px; } 
   .return-btn { top: 20px; left: 20px; width: 40px; height: 40px; font-size: 1.2rem; } 
-  .worldview-selected-title { font-size: 2rem; } 
+  .worldview-content-wrapper {padding: 20px;}
+  .worldview-selected-title { font-size: 6vw; } 
   .worldview-item { font-size: 1.2rem; } 
 }
-@media (max-width: 480px) { #home-title { font-size: 2rem; } #main-menu-container { max-width: 95%; } #main-menu-container .slide-item { font-size: 1rem; padding: 8px 10px; } .boss-grid, #story-list { grid-template-columns: 1fr; } .modal-content, .character-modal-content.new-layout { width: 95%; padding: 0; } #modal-title, .char-info-name { font-size: 1.8rem; } .char-info-left, .char-info-right { padding: 20px; } }
+@media (max-width: 480px) { .main-content-wrapper {margin-bottom: 6vw;} #home-title { font-size: 2rem; } #main-menu-container { max-width: 95%; } #main-menu-container .slide-item { font-size: 3.4vw; padding: 8px 10px; } .boss-grid, #story-list { grid-template-columns: 1fr; } .modal-content, .character-modal-content.new-layout { width: 95%; padding: 20px; } #modal-title, .char-info-name { font-size: 1.8rem; margin-top: 40px; } .char-info-left, .char-info-right { padding: 20px; } }

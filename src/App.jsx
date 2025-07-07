@@ -10,7 +10,7 @@ import BossPage from './pages/BossPage';
 import WorldviewPage from './pages/WorldviewPage';
 import ArkPage from './pages/ArkPage';
 import ClassPage from './pages/ClassPage';
-import LoadingScreen from './components/LoadingScreen'; // 로딩 스크린 컴포넌트 import
+import LoadingScreen from './components/LoadingScreen';
 
 const App = () => {
   const [currentMenuIndex, setCurrentMenuIndex] = useState(0);
@@ -21,8 +21,7 @@ const App = () => {
   const [searchResults, setSearchResults] = useState([]);
   
   const [initialData, setInitialData] = useState(null);
-
-  // 로딩 상태를 관리하기 위한 state 추가
+  
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
@@ -53,13 +52,17 @@ const App = () => {
     setSearchIndex(uniqueData);
   }, []);
 
+  // 의존성 배열에 isLoading 추가
   useEffect(() => {
+    // isLoading이 true일 때(로딩 화면일 때)는 배경을 설정하지 않음
+    if (isLoading) return;
+
     const activeItem = menuItems[currentMenuIndex];
     const backgroundElement = document.getElementById('main-background');
     if (backgroundElement && activeItem.bg) {
       backgroundElement.style.backgroundImage = `url(${activeItem.bg})`;
     }
-  }, [currentMenuIndex]);
+  }, [currentMenuIndex, isLoading]); // isLoading이 변경될 때도 이 효과를 실행
 
   const handleMenuChange = (index) => setCurrentMenuIndex(index);
   
@@ -117,9 +120,7 @@ const App = () => {
     }
   };
   
-  // 로딩이 끝나면(isLoading이 false가 되면) 앱을 렌더링
   if (isLoading) {
-    // onAnimationComplete 콜백으로 isLoading 상태를 false로 변경
     return <LoadingScreen onAnimationComplete={() => setIsLoading(false)} />;
   }
 

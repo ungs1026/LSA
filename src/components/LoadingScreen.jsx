@@ -50,7 +50,9 @@ const LoadingScreen = ({ onAnimationComplete }) => {
   return (
     <div className="loading-screen-container">
       <div className="loading-animation-wrapper" ref={wrapperRef}>
-        <img ref={imageRef} src={logoImage} alt="Lost Ark Logo" className="loading-image" />
+        <div ref={imageRef} className='loading-image-wrapper'>
+          <img  src={logoImage} alt="Lost Ark Logo" className="loading-image" />
+        </div>
         <h2 ref={textRef} className="loading-text"></h2>
       </div>
     </div>
