@@ -472,7 +472,7 @@ body { background-color: var(--color-background); color: var(--color-text); font
 /* --- 반응형 디자인 --- */
 @media (max-width: 1200px) { .story-map-container { width: 95%; height: auto; aspect-ratio: 1200 / 662; } }
 @media (max-width: 1024px) { 
-  .character-modal-content.new-layout, .ark-page-container, .class-page-container { flex-direction: column; height: auto; overflow-y: auto; } 
+  .character-modal-content.new-layout, .ark-page-container, .class-page-container { flex-direction: column; overflow-y: auto; } 
   .char-info-container { flex-direction: column; } 
   .char-info-left, .char-info-right, .ark-left-panel, .ark-center-panel, .ark-right-panel, .class-main-panel, .class-right-panel { flex-basis: auto; width: 100%; border: none; } 
   .char-info-right { border-top: 1px solid rgba(163, 134, 90, 0.2); } 
