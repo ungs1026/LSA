@@ -770,14 +770,14 @@ export const bossRaids = [
         ]
       }
     },
-    // 외부 CDN 이미지를 사용하는 보스는 그대로 유지
-    { name: "카양겔", img: "https://cdn-lostark.game.onstove.com/upload/lostark/event/221026_abyss/abyss_gargadeth_big.png", bg: "https://cdn-lostark.game.onstove.com/2022/event/221026_abyss/images/abyss_gargadeth_bg.jpg", type: 'boss', page: 'boss', },
-    { name: "상아탑", img: "https://cdn-lostark.game.onstove.com/upload/lostark/event/230222_ivorytower/ivorytower_laurid_big.png", bg: "https://cdn-lostark.game.onstove.com/2023/event/230222_ivorytower/images/ivorytower_laurid_bg.jpg", type: 'boss', page: 'boss', },
-    { name: "베히모스", img: "https://cdn-lostark.game.onstove.com/upload/lostark/event/240228_echidna/echidna_echidna_big.png", bg: "https://cdn-lostark.game.onstove.com/2024/event/240228_echidna/images/echidna_echidna_bg.jpg", type: 'boss', page: 'boss', },
-    { name: "에키드나", img: "https://cdn-lostark.game.onstove.com/upload/lostark/event/240228_echidna/echidna_echidna_big.png", bg: "https://cdn-lostark.game.onstove.com/2024/event/240228_echidna/images/echidna_echidna_bg.jpg", type: 'boss', page: 'boss', },
-    { name: "카제로스 레이드 1막", img: "https://cdn-lostark.game.onstove.com/upload/lostark/event/240731_kazeros_a/kazeros_dainater_big.png", bg: "https://cdn-lostark.game.onstove.com/2024/event/240731_kazeros_a/images/kazeros_dainater_bg.jpg", type: 'boss', page: 'boss', },
-    { name: "카제로스 레이드 2막", img: "https://cdn-lostark.game.onstove.com/upload/lostark/event/240731_kazeros_a/kazeros_aegir_big.png", bg: "https://cdn-lostark.game.onstove.com/2024/event/240731_kazeros_a/images/kazeros_aegir_bg.jpg", type: 'boss', page: 'boss', },
-    { name: "카제로스 레이드 3막", img: "https://cdn-lostark.game.onstove.com/upload/lostark/event/240731_kazeros_a/kazeros_kazeros_big.png", bg: "https://cdn-lostark.game.onstove.com/2024/event/240731_kazeros_a/images/kazeros_kazeros_bg.jpg", type: 'boss', page: 'boss', },
+    // 작업중인 내용
+    // { name: "카양겔", img: "https://cdn-lostark.game.onstove.com/upload/lostark/event/221026_abyss/abyss_gargadeth_big.png", bg: "https://cdn-lostark.game.onstove.com/2022/event/221026_abyss/images/abyss_gargadeth_bg.jpg", type: 'boss', page: 'boss', },
+    // { name: "상아탑", img: "https://cdn-lostark.game.onstove.com/upload/lostark/event/230222_ivorytower/ivorytower_laurid_big.png", bg: "https://cdn-lostark.game.onstove.com/2023/event/230222_ivorytower/images/ivorytower_laurid_bg.jpg", type: 'boss', page: 'boss', },
+    // { name: "베히모스", img: "https://cdn-lostark.game.onstove.com/upload/lostark/event/240228_echidna/echidna_echidna_big.png", bg: "https://cdn-lostark.game.onstove.com/2024/event/240228_echidna/images/echidna_echidna_bg.jpg", type: 'boss', page: 'boss', },
+    // { name: "에키드나", img: "https://cdn-lostark.game.onstove.com/upload/lostark/event/240228_echidna/echidna_echidna_big.png", bg: "https://cdn-lostark.game.onstove.com/2024/event/240228_echidna/images/echidna_echidna_bg.jpg", type: 'boss', page: 'boss', },
+    // { name: "카제로스 레이드 1막", img: "https://cdn-lostark.game.onstove.com/upload/lostark/event/240731_kazeros_a/kazeros_dainater_big.png", bg: "https://cdn-lostark.game.onstove.com/2024/event/240731_kazeros_a/images/kazeros_dainater_bg.jpg", type: 'boss', page: 'boss', },
+    // { name: "카제로스 레이드 2막", img: "https://cdn-lostark.game.onstove.com/upload/lostark/event/240731_kazeros_a/kazeros_aegir_big.png", bg: "https://cdn-lostark.game.onstove.com/2024/event/240731_kazeros_a/images/kazeros_aegir_bg.jpg", type: 'boss', page: 'boss', },
+    // { name: "카제로스 레이드 3막", img: "https://cdn-lostark.game.onstove.com/upload/lostark/event/240731_kazeros_a/kazeros_kazeros_big.png", bg: "https://cdn-lostark.game.onstove.com/2024/event/240731_kazeros_a/images/kazeros_kazeros_bg.jpg", type: 'boss', page: 'boss', },
 ]
 
 export const arksData = [
