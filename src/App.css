@@ -30,7 +30,9 @@ body {
   min-height: 100vh;
   position: relative;
 }
-
+#home-content { 
+  overflow-y: hidden;
+}
 /* --- 스크롤바 숨기기 스타일 --- */
 .page-content,
 .modal-content,
