@@ -28,6 +28,7 @@ body {
 #app-container {
   width: 100%;
   min-height: 100vh;
+  min-height: -webkit-fill-available;
   position: relative;
   overflow-y: hidden;
 }
@@ -85,7 +86,7 @@ body {
 .return-btn {
   position: fixed;
   top: 30px;
-  left: 30px;
+  right: 30px;
   width: 50px;
   height: 50px;
   background-color: rgba(26, 26, 30, 0.7);
@@ -118,8 +119,8 @@ body {
   justify-content: center;
   align-items: center;
   height: 100vh;
+  height: -webkit-fill-available;
   text-align: center;
-
 }
 
 .page-content {
@@ -1654,7 +1655,7 @@ body {
   }
   .return-btn {
     top: 20px;
-    left: 20px;
+    right: 20px;
     width: 40px;
     height: 40px;
     font-size: 1.2rem;
