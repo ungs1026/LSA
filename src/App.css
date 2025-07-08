@@ -29,6 +29,7 @@ body {
   width: 100%;
   min-height: 100vh;
   position: relative;
+  overflow-y: hidden;
 }
 #home-content { 
   overflow-y: hidden;
@@ -118,12 +119,13 @@ body {
   align-items: center;
   height: 100vh;
   text-align: center;
+
 }
 
 .page-content {
   padding: 100px 5% 50px;
   height: 100%;
-  overflow-y: auto;
+  overflow-x: hidden;
 }
 
 #main-background {

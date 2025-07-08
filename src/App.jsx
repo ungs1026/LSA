@@ -130,7 +130,6 @@ const App = () => {
   return (
     <div id="app-container">
       <div id="main-background"></div>
-
       {activePage === 'main' ? (
         <div className="main-view">
           <div className="main-content-wrapper">
@@ -155,6 +154,7 @@ const App = () => {
           {renderPageContent()}
         </div>
       )}
+
     </div>
   );
 };
