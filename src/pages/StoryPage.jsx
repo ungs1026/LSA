@@ -3,7 +3,7 @@ import { stories } from '../data/db';
 import StoryModal from '../components/StoryModal';
 import { gsap } from 'gsap';
 import map from '../assets/images/map.png';
-import travelerIcon from '../assets/images/logo_o.png'; // 움직이는 객체 이미지 import
+import travelerIcon from '../assets/images/traveler.png'; // 움직이는 객체 이미지 import
 import { MotionPathPlugin } from 'gsap/MotionPathPlugin';
 
 gsap.registerPlugin(MotionPathPlugin);

@@ -34,7 +34,7 @@ const SearchResults = ({ query, results, onResultClick }) => {
           className="result-item"
           onClick={() => onResultClick(result)}
         >
-          <span className="result-name">{result.name}</span>
+          <span className="result-name">{result.name} <span>(  {result.id || ''}  )</span></span>
           <span className="result-source">{sourceMap[result.source] || result.source}</span>
         </li>
       ))}

@@ -19,27 +19,40 @@ import charBgGalatur from '../assets/images/character/갈라투르.png';
 import charNbKadan from '../assets/images/character/nb/kadan.png';
 import charBgKadan from '../assets/images/character/kadan.png';
 import skillKadan from '../assets/images/aesther_skill/카단.png';
+
 import charNbAzena from '../assets/images/character/nb/azena.png';
 import charBgAzena from '../assets/images/character/azena.png';
 import skillAzena from '../assets/images/aesther_skill/아제나.png';
+import skillAzena2 from '../assets/images/aesther_skill/azena.png';
+
 import charNbInanna from '../assets/images/character/nb/inanna.png';
 import charBgInanna from '../assets/images/character/inanna.png';
 import skillInanna from '../assets/images/aesther_skill/이난나.png';
+
 import charNbBahuntur from '../assets/images/character/nb/bahunturr.png';
 import charBgBahuntur from '../assets/images/character/bahunturr.png';
 import skillBahuntur from '../assets/images/aesther_skill/바훈.png';
+import skillBahuntur2 from '../assets/images/aesther_skill/bahun.png';
+
 import charNbShandi from '../assets/images/character/nb/shandi.png';
 import charBgShandi from '../assets/images/character/shandi.png';
 import skillShandi from '../assets/images/aesther_skill/샨디.png';
+import skillShandi2 from '../assets/images/aesther_skill/shandi.png';
+
 import charNbNineveh from '../assets/images/character/nb/nineveh.png';
 import charBgNineveh from '../assets/images/character/nineveh.png';
 import skillNineveh from '../assets/images/aesther_skill/니나브.png';
+import skillNineveh2 from '../assets/images/aesther_skill/ninave.png';
+
 import charNbWei from '../assets/images/character/nb/wei.png';
 import charBgWei from '../assets/images/character/wei.png';
 import skillWei from '../assets/images/aesther_skill/웨이.png';
+import skillWei2 from '../assets/images/aesther_skill/wei.png';
+
 import charNbSilian from '../assets/images/character/nb/silian.png';
 import charBgSilian from '../assets/images/character/silian.png';
 import skillSilian from '../assets/images/aesther_skill/실리안.png';
+import skillSilian2 from '../assets/images/aesther_skill/silian.png';
 
 // 군단장 캐릭터 이미지 (nb, bg)
 import charNbValtan from '../assets/images/character/nb/발탄_nb.png';
@@ -118,53 +131,53 @@ export const menuItems = [
 
 const allEsthersData = [
   { name: "루테란", group: "(구) 에스더", race: "인간", title: "사슬전쟁의 영웅", type: 'character', page: 'characters', role: "에스더의 맹주, 리더", img: charNbLutheran, bg: charBgLutheran, subtitle: "Luteran the King", basicInfo: "패자의 검을 사용하는 위대한 왕. 그의 리더십 아래 7인의 에스더가 뭉칠 수 있었다.", combatInfo: "모든 에스더의 힘을 조율하고 아크의 힘을 개방하는 능력을 지녔다. 직접적인 전투력 또한 최상위권에 속했다.", description: "아크라시아를 구한 위대한 영웅이자, 루테란 왕국의 초대 국왕. 에스더의 맹주로서 사슬전쟁을 승리로 이끌었으나, 패자의 검에 의해 깊은 잠에 빠졌다." },
-  { name: "시엔", group: "현재 에스더", race: "인간", title: "무의 대가", type: 'character', page: 'characters', role: "애니츠의 정신적 지주", img: charNbSien, bg: charBgSien, subtitle: "Sien the Master", basicInfo: "애니츠의 건국자이자 무의 정점에 선 인물. 그의 무술은 전설로 전해진다.", combatInfo: "내공을 이용한 강력한 장법과 육탄전이 특기. 일리아칸과의 전투에서 그의 힘을 봉인하는데 큰 공을 세웠다.", description: "애니츠의 위대한 투사이자 현 무투대회 챔피언. 강력한 권법과 불굴의 투지로 적을 압도한다. 현재는 조화의 문을 지키는 역할을 맡고 있다." },
+  { name: "시엔", group: "(구) 에스더", race: "인간", title: "무의 대가", type: 'character', page: 'characters', role: "애니츠의 정신적 지주", img: charNbSien, bg: charBgSien, subtitle: "Sien the Master", basicInfo: "애니츠의 건국자이자 무의 정점에 선 인물. 그의 무술은 전설로 전해진다.", combatInfo: "내공을 이용한 강력한 장법과 육탄전이 특기. 일리아칸과의 전투에서 그의 힘을 봉인하는데 큰 공을 세웠다.", description: "애니츠의 위대한 투사이자 현 무투대회 챔피언. 강력한 권법과 불굴의 투지로 적을 압도한다. 현재는 조화의 문을 지키는 역할을 맡고 있다." },
   { name: "갈라투르", group: "(구) 에스더", race: "우마르", title: "전설의 대장장이", type: 'character', page: 'characters', role: "에스더의 무기 제작자", img: charNbGalatur, bg: charBgGalatur,  subtitle: "Galatur the Smith", basicInfo: "우마르 종족 역사상 최고의 대장장이. 그의 손에서 태어난 무기는 신의 힘을 담고 있다고 전해진다.", combatInfo: "자신이 만든 강력한 망치를 휘두르며 싸운다. 마수군단장 발탄과의 힘 대결에서 밀리지 않았다.", description: "전설적인 우마르 대장장이. 그의 손에서 태어난 무구는 신의 힘을 담고 있다고 전해진다. 사슬전쟁 당시 에스더들의 무기를 제작했다." },
-  { name: "카단", group: "현재 에스더", race: "인간", title: "최초의 가디언 슬레이어", type: 'character', page: 'characters', img: charNbKadan, bg: charBgKadan,  subtitle: "Kadan the First", basicInfo: "모든 것인 베일에 싸인 에스더. 그의 정체와 목적은 아크라시아 최대의 미스터리 중 하나다.", combatInfo: "어둠군단장 카멘과 유일하게 대적이 가능한 존재. 그의 검술은 신의 경지에 이르렀다고 평가받는다.", description: "최초의 가디언 슬레이어이자 에스더 중 최강의 존재. 사슬전쟁 당시, 홀로 여러 군단장과 맞서 싸울 정도의 압도적인 힘을 과시했으며 어둠군단장 카멘과 유일하게 대적 가능한 인물로 묘사된다. 전쟁 후 홀연히 사라졌으나, 베른 남부에서 카멘이 재등장하자 다시 나타나 그와 격돌했다. 현재는 림레이크에서 마지막 전쟁을 준비하고 있다.",
+  { name: "카단", group: "에스더", race: "인간", title: "최초의 가디언 슬레이어", type: 'character', page: 'characters', img: charNbKadan, bg: charBgKadan,  subtitle: "Kadan the First", basicInfo: "모든 것인 베일에 싸인 에스더. 그의 정체와 목적은 아크라시아 최대의 미스터리 중 하나다.", combatInfo: "어둠군단장 카멘과 유일하게 대적이 가능한 존재. 그의 검술은 신의 경지에 이르렀다고 평가받는다.", description: "최초의 가디언 슬레이어이자 에스더 중 최강의 존재. 사슬전쟁 당시, 홀로 여러 군단장과 맞서 싸울 정도의 압도적인 힘을 과시했으며 어둠군단장 카멘과 유일하게 대적 가능한 인물로 묘사된다. 전쟁 후 홀연히 사라졌으나, 베른 남부에서 카멘이 재등장하자 다시 나타나 그와 격돌했다. 현재는 림레이크에서 마지막 전쟁을 준비하고 있다.",
     estherSkills: [
-      { name: "어둠의 검격", icon: skillKadan, description: "어둠군단장 카멘의 특정 패턴 사용 시, 그의 공격을 완벽하게 받아친 후 강력한 반격을 가합니다. 카멘 레이드 4관문의 핵심 기믹을 파훼하는 유일한 수단으로, 사용 시 막대한 피해와 함께 긴 시간의 무력화를 유발합니다." }
+      { name: "에스더 스킬 - 단죄", icon: skillKadan, description: "카단이 전방을 눈부시게 빠른 속도로 이동하며 나히니르를 휘두른 후 공중으로 떠올라 검기를 날려 초토화시킨다. 카멘이 카단에 의해 상처를 입게 되면 잠시 행동 불능 상태가 된다." },
+      { name: "에스더 스킬 - 아르스의 방패", icon: skillKadan, description: "카단이 나히니르를 날려 넓은 범위 안에 있는 모든 아군을 보호해 일정 시간 받는 피해가 80% 감소하는 버프를 주고 자신의 영역을 형성한다. 그 직후 카단이 착지하여 단죄의 절반 정도의 피해를 입히고, 나히니르를 뽑아 다시 자신의 영역 내 적을 대상으로 거대한 폭발을 일으킨다." }
     ]
   },    
-  { name: "아제나", group: "현재 에스더", race: "실린", title: "로헨델의 여왕", type: 'character', page: 'characters', img: charNbAzena, bg: charBgAzena,  subtitle: "Azena the Queen", basicInfo: "냉철하고 이성적인 실린들의 통치자. 그녀의 마력은 대륙을 뒤덮을 정도라고 한다.", combatInfo: "원소 마법의 대가. 특히 강력한 냉기 마법으로 몽환군단장 아브렐슈드의 군단을 상대했다.", description: "실린의 여왕이자 로헨델의 지배자. 강력한 마법과 냉철한 판단력으로 종족을 이끌며, 아크를 지키는 데 중요한 역할을 한다. '이난나'와는 한 몸에서 비롯된 존재로, 질서와 이성을 상징한다. 사슬전쟁 당시 몽환군단장 아브렐슈드와 맞서 싸웠으며, 현재 아크라시아 연합의 핵심적인 인물 중 하나다.",
+  { name: "아제나", group: "에스더", race: "실린", title: "로헨델의 여왕", type: 'character', page: 'characters', img: charNbAzena, bg: charBgAzena,  subtitle: "Azena the Queen", basicInfo: "냉철하고 이성적인 실린들의 통치자. 그녀의 마력은 대륙을 뒤덮을 정도라고 한다.", combatInfo: "원소 마법의 대가. 특히 강력한 냉기 마법으로 몽환군단장 아브렐슈드의 군단을 상대했다.", description: "실린의 여왕이자 로헨델의 지배자. 강력한 마법과 냉철한 판단력으로 종족을 이끌며, 아크를 지키는 데 중요한 역할을 한다. '이난나'와는 한 몸에서 비롯된 존재로, 질서와 이성을 상징한다. 사슬전쟁 당시 몽환군단장 아브렐슈드와 맞서 싸웠으며, 현재 아크라시아 연합의 핵심적인 인물 중 하나다.",
     estherSkills: [
-      { name: "태초의 창", icon: skillAzena, description: "맵 전체에 고대의 창을 소환하여 모든 적에게 강력한 피해를 입히고, 피격된 적이 받는 피해를 증가시키는 디버프를 부여합니다. 다수의 적을 상대하거나, 특정 패턴을 파훼할 때 유용합니다." },
-      { name: "아제나의 거울", icon: skillAzena, description: "자신을 중심으로 마법진을 생성하여, 특정 공격(장판 등)을 반사하거나 무력화시키는 효과를 가집니다. 특정 보스의 위협적인 패턴을 방어하는 데 핵심적인 역할을 합니다." }
+      { name: "에스더 스킬 - 태초의 창", icon: skillAzena, description: "공격형 보조 에스더로, 맵 전체에 있는 모든 적에게 무작위 속성의 고대의 창을 2개씩 투하한 뒤 보스 몬스터에게는 화, 수, 토속성의 거대한 태초의 창을 4개 추가로 투하하여 대폭발을 일으킨다." },
+      { name: "연합군 스킬 - 정령 소환", icon: skillAzena2, description: "아제나가 운다트, 실페리온을 소환한다. 소환된 정령들은 전방에 강력한 연합 공격을 펼친다." }
     ]
   },
-  { name: "이난나", group: "현재 에스더", race: "실린", title: "조화의 성녀", type: 'character', page: 'characters', img: charNbInanna, bg: charBgInanna,  subtitle: "Inanna the Saintess", basicInfo: "아제나의 또 다른 자아이자, 자애와 조화의 상징. 그녀의 존재만으로도 주변의 상처가 치유된다.", combatInfo: "강력한 치유 마법과 보호 마법을 사용한다. 아군을 보호하고 적의 사기를 꺾는 데 능하다.", description: "자애로운 성품을 지닌 위대한 실린. 로헨델의 질서를 상징하는 '아제나'와는 달리, 순수한 빛과 조화를 상징한다. 고대의 사건으로 아제나와 분리되었으며, 현재는 파푸니카를 이끌며 아크라시아 연합에 힘을 보태고 있다.",
+  { name: "이난나", group: "에스더", race: "실린", title: "조화의 성녀", type: 'character', page: 'characters', img: charNbInanna, bg: charBgInanna,  subtitle: "Inanna the Saintess", basicInfo: "아제나의 또 다른 자아이자, 자애와 조화의 상징. 그녀의 존재만으로도 주변의 상처가 치유된다.", combatInfo: "강력한 치유 마법과 보호 마법을 사용한다. 아군을 보호하고 적의 사기를 꺾는 데 능하다.", description: "자애로운 성품을 지닌 위대한 실린. 로헨델의 질서를 상징하는 '아제나'와는 달리, 순수한 빛과 조화를 상징한다. 고대의 사건으로 아제나와 분리되었으며, 현재는 파푸니카를 이끌며 아크라시아 연합에 힘을 보태고 있다.",
     estherSkills: [
-      { name: "엘릭의 가호", icon: skillInanna, description: "자신을 중심으로 강력한 보호막을 생성하여, 범위 내 아군이 받는 피해를 대폭 감소시키고 해로운 효과를 정화합니다. 보스의 위협적인 전체 공격 패턴을 버텨내는 데 필수적입니다." },
-      { name: "오라토리오", icon: skillInanna, description: "성스러운 빛의 기운으로 아군 전체의 생명력을 지속적으로 회복시키고, 공격력을 증가시키는 강력한 버프를 부여합니다. 공대 안정성과 공격력을 동시에 끌어올리는 스킬입니다." }
+      { name: "에스더 스킬 - 엘조윈의 가호", icon: skillInanna, description: "방어형 보조 에스더 스킬로 지정 범위에 황금빛 마법진을 설치하며, 이 마법진 안에 들어가면 피격이상 면역 효과&일정량의 데미지를 흡수하는 실드를 부여해주며 보스의 특정 강화 효과 및 모험가에게 부여된 디버프와 누적된 기믹 게이지를 감소시켜주며 효과 종료시 일정량의 생명력 회복도 부여한다." },
     ]
   },
-  { name: "바훈투르", group: "현재 에스더", race: "우마르", title: "우마르의 살아있는 전설", type: 'character', page: 'characters', img: charNbBahuntur, bg: charBgBahuntur,  subtitle: "Bahuntur the Legend", basicInfo: "호탕하고 의리 넘치는 성격의 대장장이. 갈라투르의 후계자로서 그의 유지를 잇고 있다.", combatInfo: "거대한 대검을 휘두르는 파괴적인 전투 스타일을 가졌다. 그의 함성만으로도 적들이 공포에 떤다.", description: "우마르 족의 살아있는 전설이자 전설적인 대장장이 갈라투르의 후계자. 거대한 대검을 자유자재로 다루며, 호탕하고 의리 있는 성격으로 동료들의 신뢰를 받는다. 욘 대륙의 왕 케이사르의 오랜 친구이자 조력자로서, 현재 욘의 우마르들을 이끌고 있다.",
+  { name: "바훈투르", group: "에스더", race: "우마르", title: "우마르의 살아있는 전설", type: 'character', page: 'characters', img: charNbBahuntur, bg: charBgBahuntur,  subtitle: "Bahuntur the Legend", basicInfo: "호탕하고 의리 넘치는 성격의 대장장이. 갈라투르의 후계자로서 그의 유지를 잇고 있다.", combatInfo: "거대한 대검을 휘두르는 파괴적인 전투 스타일을 가졌다. 그의 함성만으로도 적들이 공포에 떤다.", description: "우마르 족의 살아있는 전설이자 전설적인 대장장이 갈라투르의 후계자. 거대한 대검을 자유자재로 다루며, 호탕하고 의리 있는 성격으로 동료들의 신뢰를 받는다. 욘 대륙의 왕 케이사르의 오랜 친구이자 조력자로서, 현재 욘의 우마르들을 이끌고 있다.",
     estherSkills: [
-      { name: "대지의 분노", icon: skillBahuntur, description: "전방에 지진을 일으켜 모든 적에게 강력한 무력화 피해를 줍니다. 보스의 무력화 게이지를 대폭 감소시켜 패턴을 끊는 데 결정적인 역할을 합니다." },
-      { name: "격돌", icon: skillBahuntur, description: "보스와 직접 격돌하여 강력한 카운터 공격을 날립니다. 특정 보스와 힘 겨루기 패턴이 발생했을 때 사용하여 전세를 역전시킬 수 있습니다." }
+      { name: "에스더 스킬 - 아크투르스의 숨결", icon: skillBahuntur, description: "방어형 보조 에스더 스킬로 하늘에서 모루가 떨어지고 모루 주변 약 14m 범위에 원이 생긴다. 이때 원 안에 있는 대상에게 30초 간 50% 이상의 피해감소 효과와 추락을 제외한 즉사기를 무시하는 피격이상 면역 효과를 부여한다. 단, 일부 공격은 면역 효과가 적용되지 않으므로 유의." },
+      { name: "연합군 스킬 - 롤링스핀", icon: skillBahuntur2, description: "샨디와 비슷하게 지원형 에스더의 포지션에서 보조 딜링형 스킬의 포지션으로 변경되었다. 주 스킬은 빠른 발동 및 무력화와 파괴를 한번에 입히는 효과를 가지고 있으며, 지원 스킬의 경우 무력화된 대상에게 추가 피해를 입히는 공격형 스킬이다." }
     ]
   },
-  { name: "샨디", group: "현재 에스더", race: "요즈", title: "환영술의 대가", type: 'character', page: 'characters', img: charNbShandi, bg: charBgShandi,  subtitle: "Shandi the Sage", basicInfo: "장난기 많아 보이지만 세상의 이치를 꿰뚫어 보는 현자. 그의 조언은 늘 에스더들을 올바른 길로 이끈다.", combatInfo: "강력한 환영 마법으로 적을 교란하고 아군을 돕는다. 광기군단장 쿠크세이튼을 상대로 우위를 점했다.", description: "요즈 족의 현자이자 위대한 환영술사. 겉보기에는 장난기 많고 유쾌한 노인이지만, 세상의 이치를 꿰뚫어 보는 지혜를 지녔다. 사슬전쟁 당시 광기군단장 쿠크세이튼을 상대하여 그의 광기를 제압했으며, 계승자의 여정에 많은 도움을 주는 조력자 역할을 한다.",
+  { name: "샨디", group: "에스더", race: "요즈", title: "환영술의 대가", type: 'character', page: 'characters', img: charNbShandi, bg: charBgShandi,  subtitle: "Shandi the Sage", basicInfo: "장난기 많아 보이지만 세상의 이치를 꿰뚫어 보는 현자. 그의 조언은 늘 에스더들을 올바른 길로 이끈다.", combatInfo: "강력한 환영 마법으로 적을 교란하고 아군을 돕는다. 광기군단장 쿠크세이튼을 상대로 우위를 점했다.", description: "요즈 족의 현자이자 위대한 환영술사. 겉보기에는 장난기 많고 유쾌한 노인이지만, 세상의 이치를 꿰뚫어 보는 지혜를 지녔다. 사슬전쟁 당시 광기군단장 쿠크세이튼을 상대하여 그의 광기를 제압했으며, 계승자의 여정에 많은 도움을 주는 조력자 역할을 한다.",
     estherSkills: [
-      { name: "시간 왜곡", icon: skillShandi, description: "주변의 시간을 왜곡시켜 아군 스킬의 재사용 대기시간을 대폭 감소시키고, 공격 및 이동 속도를 증가시킵니다. 순간적으로 폭발적인 공격을 퍼부어야 할 때 사용됩니다." },
-      { name: "환영의 문", icon: skillShandi, description: "두 개의 차원문을 생성하여 아군이 먼 거리를 즉시 이동할 수 있게 합니다. 위험한 패턴을 회피하거나, 특정 기믹을 수행하기 위해 빠르게 위치를 변경해야 할 때 사용됩니다." }
+      { name: "에스더 스킬 - 시간왜곡", icon: skillShandi, description: "방어형 보조 에스더 스킬로 환영 마법을 사용하여 공대원들의 각성기를 포함한 스킬 재사용 대기시간 초기화, 공격 및 이동속도, 마나회복량 증가, 스킬의 재사용 대기시간 감소. 적들의 공격을 포함한 모든 행동이 현격히 느려진다." },
+      { name: "연합군 스킬 - 진멸", icon: skillShandi2, description: "여태까지의 지원형 에스더의 포지션에서 무려 극딜형 스킬의 포지션으로 변경되었다. 발동 시 넓은 범위에 칼을 떨어뜨려 피해를 입히며, 마지막엔 진멸을 떨어뜨려 큰 피해를 입힌다. 지원 스킬의 경우 분신을 이용해 아델의 주 스킬처럼 넓은 범위에 강한 피해를 입힌다." }
     ]
   },
-  { name: "니나브", group: "현재 에스더", race: "라제니스", title: "라제니스의 마지막 계승자", type: 'character', page: 'characters', img: charNbNineveh, bg: charBgNineveh,  subtitle: "Nineveh the Punisher", basicInfo: "500년의 잠에서 깨어난 라제니스의 영웅. 순수하고 상냥하지만, 활을 들면 누구보다 냉철해진다.", combatInfo: "신궁이라 불릴 정도의 활 솜씨를 자랑한다. 욕망군단장 비아키스를 상대하여 그녀의 매혹을 이겨냈다.", description: "날개를 가진 종족, 라제니스의 마지막 계승자. 500년간의 긴 잠에서 깨어나 세상의 위기에 맞선다. 활의 명수이며, 가디언과 소통하는 특별한 능력을 지녔다. 순수하고 상냥한 성품이지만, 활을 들면 냉철한 전사로 변모한다. 사슬전쟁 당시 욕망군단장 비아키스를 상대했으며, 현재는 엘가시아에서 아크라시아 연합군을 돕고 있다.",
+  { name: "니나브", group: "에스더", race: "라제니스", title: "라제니스의 마지막 계승자", type: 'character', page: 'characters', img: charNbNineveh, bg: charBgNineveh,  subtitle: "Nineveh the Punisher", basicInfo: "500년의 잠에서 깨어난 라제니스의 영웅. 순수하고 상냥하지만, 활을 들면 누구보다 냉철해진다.", combatInfo: "신궁이라 불릴 정도의 활 솜씨를 자랑한다. 욕망군단장 비아키스를 상대하여 그녀의 매혹을 이겨냈다.", description: "날개를 가진 종족, 라제니스의 마지막 계승자. 500년간의 긴 잠에서 깨어나 세상의 위기에 맞선다. 활의 명수이며, 가디언과 소통하는 특별한 능력을 지녔다. 순수하고 상냥한 성품이지만, 활을 들면 냉철한 전사로 변모한다. 사슬전쟁 당시 욕망군단장 비아키스를 상대했으며, 현재는 엘가시아에서 아크라시아 연합군을 돕고 있다.",
     estherSkills: [
-      { name: "천벌 파르쿠르", icon: skillNineveh, description: "보스의 약점을 정확히 조준하여 단일 대상에게 매우 강력한 피해를 입힙니다. 에스더 스킬 중 가장 높은 단일 대상 공격력을 자랑하며, 극딜 타임에 사용됩니다." },
-      { name: "이쉬타르", icon: skillNineveh, description: "하늘에서 빛의 화살 비를 내려 넓은 범위에 지속적인 피해를 주고, 높은 수치의 무력화 피해를 누적시킵니다. 딜링과 무력화를 동시에 수행할 수 있는 유연한 스킬입니다." }
+      { name: "에스더 스킬 - 천벌 파르쿠나스", icon: skillNineveh, description: "극딜형 에스더 스킬로 발동시 파르쿠나스로 전방 일직선 범위에 강력한 한 발의 화살을 날려 적의 약점을 공격하여 강력한 피해를 가하고, 군단장의 특정 강화 효과를 해제한다." },
+      { name: "연합군 스킬 - 천벌 파르쿠나스", icon: skillNineveh2, description: "니나브가 파르쿠나스에 화살을 매겨 적의 약점을 정확하게 공격하여 강력한 피해를 입힌다." }
     ]
   },
-  { name: "웨이", group: "현재 에스더", race: "인간", title: "애니츠의 대사부", type: 'character', page: 'characters', img: charNbWei, bg: charBgWei,  subtitle: "Wei the Hegemon", basicInfo: "'패왕'이라 불리는 애니츠의 살아있는 전설. 그의 주먹은 산을 부수고 바다를 가른다고 전해진다.", combatInfo: "강력한 기공술을 바탕으로 한 파괴적인 권법을 사용한다. 그의 등장만으로도 전장의 판도가 바뀐다.", description: "애니츠의 대사부. '패왕'이라는 이명을 가졌으며, 강력한 기공술과 무술 실력으로 대륙 최고의 고수 중 한 명으로 꼽힌다. 도의 결계를 수호하는 임무를 맡고 있으며, 그의 등장만으로도 전장의 판도를 바꿀 수 있는 강력한 존재이다.",
+  { name: "웨이", group: "에스더", race: "인간", title: "애니츠의 대사부", type: 'character', page: 'characters', img: charNbWei, bg: charBgWei,  subtitle: "Wei the Hegemon", basicInfo: "'패왕'이라 불리는 애니츠의 살아있는 전설. 그의 주먹은 산을 부수고 바다를 가른다고 전해진다.", combatInfo: "강력한 기공술을 바탕으로 한 파괴적인 권법을 사용한다. 그의 등장만으로도 전장의 판도가 바뀐다.", description: "애니츠의 대사부. '패왕'이라는 이명을 가졌으며, 강력한 기공술과 무술 실력으로 대륙 최고의 고수 중 한 명으로 꼽힌다. 도의 결계를 수호하는 임무를 맡고 있으며, 그의 등장만으로도 전장의 판도를 바꿀 수 있는 강력한 존재이다.",
     estherSkills: [
-      { name: "도철", icon: skillWei, description: "강력한 기를 모아 전방으로 돌진하며 경로상의 모든 적에게 압도적인 무력화 피해를 줍니다. 보스의 무력화 패턴을 파훼하는 데 가장 보편적으로 사용되는 스킬입니다." },
-      { name: "비기: 진천패", icon: skillWei, description: "하늘로 뛰어올라 땅을 내리찍어 매우 높은 파괴 피해를 줍니다. 보스의 특정 부위를 파괴해야 하는 기믹에서 핵심적인 역할을 수행합니다." }
+      { name: "에스더 스킬 - 각성 도철", icon: skillWei, description: "공격형 보조 에스더 스킬로, 도철을 소환하여 대상에게 돌진시킨다. 짧은 모션을 가지고 있으며 높은 무력화 수치를 지닌 강력한 공격이 특징. 딜포팅형 스킬답게 데미지 자체는 실리안과 니나브보다 떨어지지만 무력화가 지닌 유틸성이 어마어마하다." },
+      { name: "연합군 스킬 - 도철 소환", icon: skillWei2, description: "사용 시, 군단장 레이드에서의 에스더 스킬과 동일한 모션의 연속 공격을 펼치고, 지원 스킬의 경우엔 도철의 입에서 생성된 에너지 구슬을 날려 데미지를 준다. 다만 무력화 기능은 라하르트에게 넘어갔기 때문에 카제로스 레이드에선 순수 딜링용 스킬로 사용된다." }
     ]
   },
-  { name: "실리안", group: "현재 에스더", race: "인간", title: "루테란의 왕", type: 'character', page: 'characters', img: charNbSilian, bg: charBgSilian,  subtitle: "Silian the Commander", basicInfo: "영웅 루테란의 후손이자 현재 루테란의 왕. 내전을 극복하고 분열된 아크라시아를 하나로 모으고 있다.", combatInfo: "패자의 검을 사용하여 왕가의 검술을 펼친다. 리더로서 연합군을 지휘하는 능력이 탁월하다.", description: "영웅 루테란의 후손이자 현재 루테란의 왕. 어릴 적 겪은 비극과 왕국의 내전을 극복하고 분열된 아크라시아를 하나로 모으는 구심점 역할을 하고 있다. 패자의 검을 사용하여 왕가의 검술을 펼치며, 아크라시아 연합군의 총사령관으로서 탁월한 리더십을 발휘한다.",
+  { name: "실리안", group: "에스더", race: "인간", title: "루테란의 왕", type: 'character', page: 'characters', img: charNbSilian, bg: charBgSilian,  subtitle: "Silian the Commander", basicInfo: "영웅 루테란의 후손이자 현재 루테란의 왕. 내전을 극복하고 분열된 아크라시아를 하나로 모으고 있다.", combatInfo: "패자의 검을 사용하여 왕가의 검술을 펼친다. 리더로서 연합군을 지휘하는 능력이 탁월하다.", description: "영웅 루테란의 후손이자 현재 루테란의 왕. 어릴 적 겪은 비극과 왕국의 내전을 극복하고 분열된 아크라시아를 하나로 모으는 구심점 역할을 하고 있다. 패자의 검을 사용하여 왕가의 검술을 펼치며, 아크라시아 연합군의 총사령관으로서 탁월한 리더십을 발휘한다.",
     estherSkills: [
-      { name: "천벌 파괴", icon: skillSilian, description: "패자의 검을 소환하여 전방을 향해 강력한 일격을 날립니다. 매우 높은 부위 파괴 피해를 입히는 데 특화되어 있습니다." },
-      { name: "천벌 집행", icon: skillSilian, description: "하늘로 날아올라 지정한 위치에 검을 내리꽂아 강력한 피해와 높은 무력화 피해를 줍니다. 딜링과 무력화를 동시에 수행할 수 있습니다." }
+      { name: "에스더 스킬 - 완성된 패자의 검", icon: skillSilian, description: "극딜형 에스더 스킬로 모든 에스더 스킬 중 스킬 시전 선딜레이가 제일 긴 대신 부위 파괴에 특화된 강력한 피해를 주는 것이 특징. 패자의 검에 힘을 실어 내리친다." },
+      { name: "연합군 스킬 - 완성된 패자의 검", icon: skillSilian2, description: "실리안이 패자의 검을 각성시켜 빛의 힘을 담아 힘껏 내려친다. 대지가 빛의 힘으로 요동치며 크게 폭발하여 강력한 피해를 준다." }
     ]
   },
 ];

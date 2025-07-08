@@ -12,6 +12,9 @@ import ArkPage from './pages/ArkPage';
 import ClassPage from './pages/ClassPage';
 import LoadingScreen from './components/LoadingScreen';
 
+import backIcon from './assets/images/back.svg';
+
+
 const App = () => {
   const [currentMenuIndex, setCurrentMenuIndex] = useState(0);
   const [activePage, setActivePage] = useState('main');
@@ -146,7 +149,9 @@ const App = () => {
         </div>
       ) : (
         <div className="page-wrapper">
-          <button className="return-btn" onClick={handleReturnToMain}>&#8617;</button>
+          <button className="return-btn" onClick={handleReturnToMain}>
+            <img src={backIcon} alt="backIcon" className='return_icon_img' />
+          </button>
           {renderPageContent()}
         </div>
       )}

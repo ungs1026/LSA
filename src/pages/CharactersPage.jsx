@@ -54,7 +54,7 @@ const CharactersPage = ({ initialData }) => {
           (구) 에스더
         </button>
         <button className={`toggle-btn ${activeTab === 'current-esthers' ? 'active' : ''}`} onClick={() => setActiveTab('current-esthers')}>
-          현재 에스더
+          에스더
         </button>
         <button className={`toggle-btn ${activeTab === 'commanders' ? 'active' : ''}`} onClick={() => setActiveTab('commanders')}>
           카제로스 군단장

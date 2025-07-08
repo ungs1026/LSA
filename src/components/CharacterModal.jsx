@@ -82,7 +82,7 @@ const CharacterModal = ({ character, isOpen, onClose }) => {
               {character.estherSkills && (
                 <div className="esther-skill-section">
                   <div className="char-info-divider"></div>
-                  <h3 className="detail-title" style={{marginBottom: '15px'}}>에스더 스킬</h3>
+                  <h3 className="detail-title" style={{marginBottom: '15px'}}>에스더 스킬 & 연합군 스킬</h3>
                   <div className="esther-skills-container">
                     {character.estherSkills.map((skill) => (
                       <div 
