@@ -28,7 +28,6 @@ body {
 #app-container {
   width: 100%;
   min-height: 100vh;
-  min-height: -webkit-fill-available;
   position: relative;
   overflow-y: hidden;
 }
@@ -119,7 +118,6 @@ body {
   justify-content: center;
   align-items: center;
   height: 100vh;
-  height: -webkit-fill-available;
   text-align: center;
 }
 
@@ -1311,19 +1309,19 @@ body {
   padding: 30px 40px;
   border-radius: 15px;
   border: 1px solid rgba(163, 134, 90, 0.2);
-  max-width: 500px; /* 최대 너비 지정 */
+  max-width: 100%; /* 최대 너비 지정 */
   width: 100%;
 }
 .class-info-name {
   font-family: var(--font-title);
-  font-size: 8vw;
+  font-size: min(8vw, 30  px);
   color: #fff;
   margin-bottom: 1rem;
 }
 .class-info-description {
   margin-bottom: 2rem;
   line-height: 1.7;
-  font-size: 4vw;
+  font-size: min(4vw, 14px);
 }
 .class-info-details .detail-item {
   margin-top: 1.5rem;
@@ -1408,12 +1406,12 @@ body {
 /* 신규 스타일: 설명 텍스트 */
 .detail-content-description p {
   line-height: 1.6;
-  font-size: 4vw;
+  font-size: min(4vw, 14px);
 }
 /* 강조 문구 스타일 추가 */
 .class-info-emphasis {
   font-family: var(--font-title);
-  font-size: 4.8vw;
+  font-size: min(4.8vw, 18px);
   font-style: italic;
   color: var(--color-secondary);
   margin-bottom: 1.5rem;
@@ -1519,6 +1517,379 @@ body {
 .image-viewer-download-btn:hover {
   background-color: rgba(255, 255, 255, 0.4);
 }
+
+/* =================================== */
+/* ======== Suggest Page Styles ======== */
+/* =================================== */
+.suggest-page-wrapper {
+  font-family: var(--font-title);
+  width: 100%;
+  min-height: 100%;
+  display: flex;
+  align-items: flex-start; /* 컨텐츠가 길어질 경우를 대비해 상단 정렬 */
+  justify-content: center;
+  padding: 40px 0; /* 상하 여백 */
+}
+
+.suggest-page-container {
+  width: 80%;
+  max-width: 1400px;
+  margin: 0 auto;
+  background-color: rgba(10, 10, 12, 0.6);
+  backdrop-filter: blur(8px);
+  border: 1px solid var(--color-primary-light);
+  border-radius: 15px;
+  padding: 3vw 4vw;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
+
+.suggest-page {
+  padding: 40px 5%;
+  color: var(--color-text);
+}
+
+.page-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+  border-bottom: 2px solid var(--color-primary-light);
+  padding-bottom: 15px;
+}
+
+.page-header h1 {
+  font-size: clamp(1.8rem, 4vw, 2.5rem);
+  color: var(--color-primary);
+}
+
+.write-btn {
+  background-color: var(--color-primary);
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: clamp(0.9rem, 2vw, 1rem);
+  transition: background-color 0.3s;
+}
+
+.write-btn:hover {
+  background-color: var(--color-primary-light);
+}
+
+.suggest-list-container {
+  background-color: rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+  padding: 10px;
+  min-height: 500px;
+}
+
+.suggest-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.suggest-list li {
+  display: grid;
+  grid-template-columns: 1fr 120px 120px;
+  gap: 15px;
+  padding: 15px;
+  border-bottom: 1px solid var(--color-border);
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.suggest-list li:hover {
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+.suggest-list li:last-child {
+  border-bottom: none;
+}
+
+.list-title {
+  font-weight: 500;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.list-author, .list-date {
+  text-align: center;
+  color: var(--color-text-subtle);
+}
+
+/* Pagination */
+.pagination-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 30px;
+}
+
+.pagination-button {
+  background: none;
+  border: 1px solid var(--color-border);
+  color: var(--color-text-subtle);
+  margin: 0 5px;
+  padding: 8px 12px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.pagination-button:hover, .pagination-button.active {
+  background-color: var(--color-primary);
+  color: #fff;
+  border-color: var(--color-primary);
+}
+
+/* Suggest Modal (Write/Edit) */
+.suggest-modal-content {
+  background-color: var(--color-bg-dark);
+  padding: 30px;
+  border-radius: 12px;
+  width: 90%;
+  max-width: 600px;
+  position: relative;
+}
+
+.suggest-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.suggest-form input, .suggest-form textarea {
+  width: 100%;
+  padding: 12px;
+  background-color: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  color: var(--color-text);
+  font-size: 1rem;
+}
+
+.suggest-form .form-row {
+  display: flex;
+  gap: 15px;
+}
+
+.suggest-form textarea {
+  min-height: 200px;
+  resize: vertical;
+}
+
+.form-submit-btn {
+  background-color: var(--color-primary);
+  color: #fff;
+  padding: 15px;
+  border: none;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.form-submit-btn:hover {
+  background-color: var(--color-primary-light);
+}
+
+/* Suggest Detail Modal */
+.suggest-detail-modal-content {
+  background-color: var(--color-bg-dark);
+  padding: 0;
+  border-radius: 12px;
+  width: 90%;
+  max-width: 800px;
+  position: relative;
+  overflow: hidden;
+}
+
+.detail-modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  background-color: rgba(0,0,0,0.2);
+}
+
+.detail-modal-actions button {
+  background: none;
+  border: 1px solid var(--color-border);
+  color: var(--color-text-subtle);
+  margin-left: 10px;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.detail-modal-actions button:hover {
+  background-color: var(--color-primary-light);
+  color: #fff;
+}
+
+.detail-modal-body {
+  padding: 30px;
+  max-height: 70vh;
+  overflow-y: auto;
+}
+
+.detail-title {
+  font-size: clamp(1.5rem, 4vw, 2rem);
+  margin-bottom: 10px;
+}
+
+.detail-meta {
+  display: flex;
+  gap: 20px;
+  color: var(--color-text-subtle);
+  padding-bottom: 20px;
+  margin-bottom: 20px;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.detail-content {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  white-space: pre-wrap; /* 줄바꿈 및 공백 유지 */
+}
+
+/* =================================== */
+/* ======== Comment Section Styles ======= */
+/* =================================== */
+
+.comment-section {
+  margin-top: 30px;
+  padding-top: 20px;
+}
+
+.comment-section hr {
+  border: none;
+  border-top: 1px solid var(--color-border);
+  margin-bottom: 20px;
+}
+
+.comment-section h4 {
+  font-size: 1.2rem;
+  color: var(--color-primary);
+  margin-bottom: 20px;
+}
+
+.comment-thread {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.reply-thread {
+  padding-left: 30px;
+  border-left: 2px solid var(--color-border);
+  margin-left: 10px;
+}
+
+.comment-item {
+  background-color: rgba(0, 0, 0, 0.15);
+  padding: 15px;
+  border-radius: 8px;
+}
+
+.comment-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.comment-author {
+  font-weight: bold;
+}
+
+.comment-date {
+  font-size: 0.8rem;
+  color: var(--color-text-subtle);
+}
+
+.comment-content {
+  line-height: 1.6;
+  margin-bottom: 10px;
+}
+
+.comment-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.comment-actions button {
+  background: none;
+  border: none;
+  color: var(--color-text-subtle);
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.comment-actions button:hover {
+  color: var(--color-primary);
+}
+
+/* Comment Form Styles */
+.comment-form {
+  margin-top: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.comment-form textarea {
+  width: 100%;
+  padding: 10px;
+  background-color: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  color: var(--color-text);
+  font-size: 0.9rem;
+  min-height: 60px;
+  resize: vertical;
+}
+
+.comment-form-meta {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.comment-form-meta input {
+  flex: 1;
+  padding: 8px;
+  background-color: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  color: var(--color-text);
+}
+
+.comment-form-meta button {
+  background-color: var(--color-primary);
+  color: #fff;
+  border: none;
+  padding: 8px 15px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.comment-form-meta button:hover {
+  background-color: var(--color-primary-light);
+}
+
+.reply-form {
+  padding: 15px;
+  background-color: rgba(0,0,0,0.2);
+  border-radius: 8px;
+}
+
 
 /* --- 반응형 디자인 --- */
 @media (max-width: 1200px) {
@@ -1636,6 +2007,10 @@ body {
     transform: scale(1);
     margin: 0;
   }
+  .suggest-page-container {
+    width: 90%;
+    padding: 20px;
+  }
 }
 @media (max-width: 768px) {
   #main-background {
@@ -1666,6 +2041,34 @@ body {
   .worldview-selected-title {
     font-size: 6vw;
   }
+  .suggest-list li {
+    grid-template-columns: 1fr;
+    gap: 5px;
+    padding: 12px;
+    position: relative;
+  }
+  .list-title {
+    font-size: 1.1rem;
+    margin-bottom: 5px;
+  }
+  .list-author {
+    position: absolute;
+    bottom: 12px;
+    left: 12px;
+    font-size: 0.8rem;
+  }
+  .list-date {
+    position: absolute;
+    bottom: 12px;
+    right: 12px;
+    font-size: 0.8rem;
+  }
+  .suggest-page-wrapper {
+    padding: 20px 0;
+  }
+  .suggest-page-container {
+    width: 95%;
+  }
 }
 @media (max-width: 480px) {
   #main-menu-container {
@@ -1691,3 +2094,5 @@ body {
     padding: 20px;
   }
 }
+
+

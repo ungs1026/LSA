@@ -8,6 +8,8 @@ import bgContinents from '../assets/images/bg_img/1_.여명의시대.jpg';
 import bgCharacters from '../assets/images/bg_img/16.에스더와악마군단장의격돌.jpg';
 import bgBoss from '../assets/images/bg_img/9.어둠의검사카멘.jpg';
 import bgClass from '../assets/images/bg_img/class_bg.png';
+import bgSuggest from '../assets/images/bg_img/9.어둠의검사카멘.jpg'; // 임시 배경
+
 
 // 에스더 캐릭터 이미지 (nb, bg, skill)
 import charNbLutheran from '../assets/images/character/nb/lutheran.png';
@@ -127,6 +129,7 @@ export const menuItems = [
   { id: "boss", title: "BOSS RAID", bg: bgBoss },
   { id: "ark", title: "ARK", bg: bgArk },
   { id: "class", title: "CLASS", bg: bgClass },
+  { id: "suggest", title: "SUGGEST", bg: bgSuggest },
 ];
 
 const allEsthersData = [

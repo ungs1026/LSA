@@ -11,6 +11,8 @@ import WorldviewPage from './pages/WorldviewPage';
 import ArkPage from './pages/ArkPage';
 import ClassPage from './pages/ClassPage';
 import LoadingScreen from './components/LoadingScreen';
+import SuggestPage from './pages/SuggestPage';
+
 
 import backIcon from './assets/images/back.svg';
 
@@ -26,6 +28,23 @@ const App = () => {
   const [initialData, setInitialData] = useState(null);
   
   const [isLoading, setIsLoading] = useState(true);
+
+  // --- 추가된 부분: 모바일 브라우저의 높이 문제를 해결하기 위한 useEffect ---
+  useEffect(() => {
+    // 실제 뷰포트 높이를 계산하는 함수
+    const setVh = () => {
+      const vh = window.innerHeight * 0.01;
+      document.documentElement.style.setProperty('--vh', `${vh}px`);
+    };
+
+    // 처음 로드될 때와 화면 크기가 변경될 때 함수 실행
+    setVh();
+    window.addEventListener('resize', setVh);
+
+    // 컴포넌트가 언마운트될 때 이벤트 리스너 제거
+    return () => window.removeEventListener('resize', setVh);
+  }, []);
+  // --------------------------------------------------------------------
 
   useEffect(() => {
     const allClassData = [];
@@ -55,9 +74,7 @@ const App = () => {
     setSearchIndex(uniqueData);
   }, []);
 
-  // 의존성 배열에 isLoading 추가
   useEffect(() => {
-    // isLoading이 true일 때(로딩 화면일 때)는 배경을 설정하지 않음
     if (isLoading) return;
 
     const activeItem = menuItems[currentMenuIndex];
@@ -65,7 +82,7 @@ const App = () => {
     if (backgroundElement && activeItem.bg) {
       backgroundElement.style.backgroundImage = `url(${activeItem.bg})`;
     }
-  }, [currentMenuIndex, isLoading]); // isLoading이 변경될 때도 이 효과를 실행
+  }, [currentMenuIndex, isLoading]);
 
   const handleMenuChange = (index) => setCurrentMenuIndex(index);
   
@@ -118,6 +135,8 @@ const App = () => {
         return <ArkPage initialData={initialData} />;
       case 'class':
         return <ClassPage initialData={initialData} />;
+      case 'suggest': // suggest 케이스 추가
+        return <SuggestPage />;
       default: 
         return null;
     }
@@ -130,6 +149,7 @@ const App = () => {
   return (
     <div id="app-container">
       <div id="main-background"></div>
+
       {activePage === 'main' ? (
         <div className="main-view">
           <div className="main-content-wrapper">
@@ -154,7 +174,6 @@ const App = () => {
           {renderPageContent()}
         </div>
       )}
-
     </div>
   );
 };
