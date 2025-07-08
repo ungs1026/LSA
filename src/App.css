@@ -552,14 +552,20 @@ body {
   }
 }
 .modal-close-btn {
-  position: absolute;
-  top: 15px;
-  right: 20px;
-  font-size: 2rem;
+  position: sticky; /* 'absolute'에서 'sticky'로 변경 */
+  top: 0;
+  right: 0;
+  font-size: clamp(1rem, 5vw, 2.5rem); /* 반응형 폰트 크기로 조정 */
   color: var(--color-secondary);
   cursor: pointer;
-  transition: color 0.3s, transform 0.3s;
+  transition: color 0.3s, transform 0.3s, background-color 0.3s; /* transition에 background-color 추가 */
   z-index: 10;
+  float: right; /* 콘텐츠 흐름의 우측 상단에 위치하도록 설정 */
+}
+.modal-close-btn.scrolled {
+  background-color: rgba(26, 26, 30, 0.75); /* 반투명 배경 */
+  backdrop-filter: blur(4px); /* 블러 효과 */
+  border-radius: 10px;
 }
 .modal-close-btn:hover {
   color: #fff;
@@ -567,7 +573,7 @@ body {
 }
 #modal-title {
   font-family: var(--font-title);
-  font-size: min(5.2vw, 32px);
+  font-size: min(5.8vw, 32px);
   color: var(--color-primary);
   margin-bottom: 20px;
 }
@@ -1659,9 +1665,6 @@ body {
   }
 }
 @media (max-width: 480px) {
-  .main-content-wrapper {
-    margin-bottom: 30%;
-  }
   #main-menu-container {
     max-width: 95%;
   }
@@ -1672,9 +1675,10 @@ body {
   .modal-content,
   .character-modal-content.new-layout {
     width: 95%;
+    height: 80%;
     padding: 20px;
+    overflow-x: hidden;
   }
-  #modal-title,
   .char-info-name {
     font-size: 1.8rem;
     margin-top: 10px;
