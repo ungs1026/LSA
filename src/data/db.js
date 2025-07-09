@@ -3,12 +3,13 @@
 // --- 이미지 import ---
 // menuItems 배경 이미지
 import bgMain from '../assets/images/main_bg.jpg';
-import bgWorldview from '../assets/images/bg_img/2.세계의탄생.jpg';
+import bgWorldview from '../assets/images/bg_img/4.최초의전쟁,그리고가디언의탄생.jpg';
 import bgContinents from '../assets/images/bg_img/1_.여명의시대.jpg';
-import bgCharacters from '../assets/images/bg_img/16.에스더와악마군단장의격돌.jpg';
-import bgBoss from '../assets/images/bg_img/9.어둠의검사카멘.jpg';
+import bgCharacters from '../assets/images/bg_img/character.jpg';
+import bgBoss from '../assets/images/bg_img/bossraid.jpg';
 import bgClass from '../assets/images/bg_img/class_bg.png';
-import bgSuggest from '../assets/images/bg_img/9.어둠의검사카멘.jpg'; // 임시 배경
+import bgSuggest from '../assets/images/bg_img/suggest.png';
+import bgCredit from '../assets/images/bg_img/suggest.png'; // 임시 배경
 
 
 // 에스더 캐릭터 이미지 (nb, bg, skill)
@@ -130,6 +131,7 @@ export const menuItems = [
   { id: "ark", title: "ARK", bg: bgArk },
   { id: "class", title: "CLASS", bg: bgClass },
   { id: "suggest", title: "SUGGEST", bg: bgSuggest },
+  { id: "credit", title: "CREDIT", bg: bgCredit },
 ];
 
 const allEsthersData = [
@@ -888,4 +890,29 @@ export const arksData = [
     type: 'ark', 
     page: 'ark' 
   }
+];
+
+// Credit 페이지의 이미지 목록을 위해 이미지 정보 export
+export const imageData = [
+  { url: bgMain, name: 'main_bg.jpg', usage: '메인 화면 배경' },
+  { url: bgWorldview, name: '2.세계의탄생.jpg', usage: '세계관 페이지 배경' },
+  { url: bgContinents, name: '1_.여명의시대.jpg', usage: '대륙 페이지 배경' },
+  { url: charBgLutheran, name: 'lutheran.png', usage: '캐릭터: 루테란' },
+  { url: charBgSien, name: '시엔.png', usage: '캐릭터: 시엔' },
+  { url: charBgGalatur, name: '갈라투르.png', usage: '캐릭터: 갈라투르' },
+  { url: charBgKadan, name: 'kadan.png', usage: '캐릭터: 카단' },
+  { url: charBgAzena, name: 'azena.png', usage: '캐릭터: 아제나' },
+  { url: charBgInanna, name: 'inanna.png', usage: '캐릭터: 이난나' },
+  { url: charBgBahuntur, name: 'bahunturr.png', usage: '캐릭터: 바훈투르' },
+  { url: charBgShandi, name: 'shandi.png', usage: '캐릭터: 샨디' },
+  { url: charBgNineveh, name: 'nineveh.png', usage: '캐릭터: 니나브' },
+  { url: charBgWei, name: 'wei.png', usage: '캐릭터: 웨이' },
+  { url: charBgSilian, name: 'silian.png', usage: '캐릭터: 실리안' },
+  { url: charBgValtan, name: '발탄.png', usage: '캐릭터: 발탄' },
+  { url: charBgBiackiss, name: '비아.png', usage: '캐릭터: 비아키스' },
+  { url: charBgKouku, name: '쿠크.png', usage: '캐릭터: 쿠크세이튼' },
+  { url: charBgAbrelshud, name: '아브.png', usage: '캐릭터: 아브렐슈드' },
+  { url: charBgIlliakan, name: '일리.png', usage: '캐릭터: 일리아칸' },
+  { url: charBgKamen, name: '카멘.png', usage: '캐릭터: 카멘' },
+  // ... 필요에 따라 다른 이미지들도 추가 ...
 ];

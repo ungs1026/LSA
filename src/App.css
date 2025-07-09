@@ -31,7 +31,7 @@ body {
   position: relative;
   overflow-y: hidden;
 }
-#home-content { 
+#home-content {
   overflow-y: hidden;
 }
 /* --- 스크롤바 숨기기 스타일 --- */
@@ -44,7 +44,9 @@ body {
 .boss-modal-content,
 .ark-left-panel,
 .ark-right-panel,
-.search-results-list {
+.search-results-list,
+.credit-content,
+.board-content {
   scrollbar-width: none;
   -ms-overflow-style: none;
 }
@@ -376,7 +378,9 @@ body {
   font-weight: 500;
   word-break: break-all;
 }
-.result-name span {font-size: 1vw;}
+.result-name span {
+  font-size: 1vw;
+}
 .result-source {
   font-size: 0.8rem;
   color: var(--color-secondary);
@@ -570,7 +574,6 @@ body {
 }
 .modal-close-btn:hover {
   color: #fff;
-  transform: rotate(90deg);
 }
 #modal-title {
   font-family: var(--font-title);
@@ -1314,7 +1317,7 @@ body {
 }
 .class-info-name {
   font-family: var(--font-title);
-  font-size: min(8vw, 30  px);
+  font-size: min(8vw, 30 px);
   color: #fff;
   margin-bottom: 1rem;
 }
@@ -1522,30 +1525,31 @@ body {
 /* ======== Suggest Page Styles ======== */
 /* =================================== */
 .suggest-page-wrapper {
-  font-family: var(--font-title);
-  width: 100%;
-  min-height: 100%;
+  width: 100vw;
+  height: 100vh;
+  padding: 20px;
+  position: relative;
+  overflow: hidden;
   display: flex;
-  align-items: flex-start; /* 컨텐츠가 길어질 경우를 대비해 상단 정렬 */
+  align-items: center;
   justify-content: center;
-  padding: 40px 0; /* 상하 여백 */
+  background-color: rgba(0, 0, 0, 0.3);
 }
 
 .suggest-page-container {
   width: 80%;
   max-width: 1400px;
-  margin: 0 auto;
-  background-color: rgba(10, 10, 12, 0.6);
-  backdrop-filter: blur(8px);
+  height: 90vh;
+  display: flex;
+  flex-direction: column;
+  background-color: rgba(10, 10, 12, 0.7);
+  backdrop-filter: blur(10px);
   border: 1px solid var(--color-primary-light);
   border-radius: 15px;
-  padding: 3vw 4vw;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-}
-
-.suggest-page {
-  padding: 40px 5%;
-  color: var(--color-text);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+  /* --- 아래 1줄 삭제 --- */
+  /* position: absolute; */
+  transition: all 0.4s ease-in-out;
 }
 
 .page-header {
@@ -1555,6 +1559,10 @@ body {
   margin-bottom: 30px;
   border-bottom: 2px solid var(--color-primary-light);
   padding-bottom: 15px;
+}
+.suggest-page {
+  padding: 40px 5%;
+  color: var(--color-text);
 }
 
 .page-header h1 {
@@ -1592,12 +1600,26 @@ body {
 
 .suggest-list li {
   display: grid;
-  grid-template-columns: 1fr 120px 120px;
-  gap: 15px;
+  /* 컬럼을 2개로 변경합니다 (제목, 정보 영역) */
+  grid-template-columns: 1fr auto;
+  gap: 20px; /* gap 조정 */
   padding: 15px;
   border-bottom: 1px solid var(--color-border);
   cursor: pointer;
   transition: background-color 0.3s;
+  align-items: center; /* 세로 중앙 정렬 */
+}
+/* ======== 새로 추가된 div와 그 자식 요소에 대한 스타일 추가 ======== */
+.suggest-list li > div {
+  display: flex;
+  justify-content: space-between;
+  width: 240px; /* 작성자, 날짜 영역의 전체 너비 고정 */
+}
+.list-author,
+.list-date {
+  text-align: center;
+  color: var(--color-text-subtle);
+  width: 120px; /* 각 항목의 너비 고정 */
 }
 
 .suggest-list li:hover {
@@ -1615,7 +1637,8 @@ body {
   text-overflow: ellipsis;
 }
 
-.list-author, .list-date {
+.list-author,
+.list-date {
   text-align: center;
   color: var(--color-text-subtle);
 }
@@ -1639,7 +1662,8 @@ body {
   transition: all 0.3s;
 }
 
-.pagination-button:hover, .pagination-button.active {
+.pagination-button:hover,
+.pagination-button.active {
   background-color: var(--color-primary);
   color: #fff;
   border-color: var(--color-primary);
@@ -1653,6 +1677,7 @@ body {
   width: 90%;
   max-width: 600px;
   position: relative;
+  border: 1px solid var(--color-primary-light); /* 모달 테두리 추가 */
 }
 
 .suggest-form {
@@ -1661,7 +1686,8 @@ body {
   gap: 15px;
 }
 
-.suggest-form input, .suggest-form textarea {
+.suggest-form input,
+.suggest-form textarea {
   width: 100%;
   padding: 12px;
   background-color: var(--color-bg);
@@ -1705,6 +1731,7 @@ body {
   max-width: 800px;
   position: relative;
   overflow: hidden;
+  border: 1px solid var(--color-primary-light); /* 모달 테두리 추가 */
 }
 
 .detail-modal-header {
@@ -1712,7 +1739,7 @@ body {
   justify-content: space-between;
   align-items: center;
   padding: 10px 20px;
-  background-color: rgba(0,0,0,0.2);
+  background-color: rgba(0, 0, 0, 0.2);
 }
 
 .detail-modal-actions button {
@@ -1886,10 +1913,359 @@ body {
 
 .reply-form {
   padding: 15px;
-  background-color: rgba(0,0,0,0.2);
+  background-color: rgba(0, 0, 0, 0.2);
   border-radius: 8px;
 }
 
+/* =================================== */
+/* ======== Search Bar Styles ======== */
+/* =================================== */
+
+.search-bar-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin-top: 30px;
+  padding: 15px;
+  background-color: rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+}
+
+.search-select,
+.search-input,
+.search-button {
+  background-color: var(--color-bg);
+  border: 1px solid var(--color-border);
+  color: var(--color-text);
+  border-radius: 5px;
+  padding: 10px;
+  font-size: 1rem;
+}
+
+.search-select {
+  cursor: pointer;
+}
+
+.search-input {
+  flex-grow: 1;
+  max-width: 400px;
+}
+
+.search-button {
+  background-color: var(--color-primary);
+  color: #fff;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.search-button:hover {
+  background-color: var(--color-primary-light);
+}
+
+/* =================================== */
+/* ======== Loading Spinner Styles ======= */
+/* =================================== */
+
+.suggest-list-container.loading {
+  position: relative;
+  /* 로딩 중 클릭 방지 및 시각적 효과를 위한 오버레이 */
+  &::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 8px; /* 부모 요소의 border-radius와 일치 */
+    z-index: 10;
+  }
+}
+
+.loading-spinner {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 50px;
+  height: 50px;
+  border: 5px solid rgba(255, 255, 255, 0.3);
+  border-top-color: var(--color-primary);
+  border-radius: 50%;
+  z-index: 11; /* 오버레이보다 위에 표시 */
+  animation: spin 1s linear infinite;
+  transform: translate(-50%, -50%);
+}
+
+@keyframes spin {
+  to {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+
+/* YouTube Background */
+.youtube-iframe {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100vw;
+  height: 56.25vw; /* 16:9 aspect ratio */
+  min-height: 100vh;
+  transform: translate(-50%, -50%);
+}
+
+.window-header {
+  width: 100%;
+  padding: 10px 15px;
+  background-color: rgba(0, 0, 0, 0.3);
+  border-bottom: 1px solid var(--color-primary-light);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.live-clock {
+  font-family: var(--font-title);
+  font-size: 0.9rem;
+  color: var(--color-secondary);
+}
+
+.window-controls .minimize-btn {
+  background: none;
+  border: none;
+  color: var(--color-secondary);
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 0 5px;
+}
+.window-controls .minimize-btn:hover {
+  color: #fff;
+}
+
+/* --- 3. 최소화 상태 스타일 --- */
+.suggest-page-container.minimized {
+  width: 50px;
+  height: 50px;
+  /* 좌측 상단으로 위치 고정 */
+  top: 20px !important;
+  left: 20px !important;
+  position: fixed;
+  cursor: pointer;
+  padding: 0;
+  justify-content: center; /* 아이콘 중앙 정렬 */
+}
+
+.suggest-page-container.minimized .minimize-btn {
+  font-size: 1.2rem; /* 복원 아이콘 크기 */
+}
+
+/* --- 게시판 메인 콘텐츠 래퍼 --- */
+.board-content {
+  padding: 2vw 3vw;
+  overflow-y: auto; /* 콘텐츠가 많을 경우 스크롤 */
+  flex-grow: 1; /* 남은 공간 모두 차지 */
+  transition: opacity 0.2s;
+}
+
+/* 최소화 시 콘텐츠 숨기기 */
+.suggest-page-container.minimized .board-content,
+.suggest-page-container.minimized .live-clock {
+  display: none;
+}
+.suggest-page-container.minimized .window-header {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+/* =================================== */
+/* ======== Credit Page Styles ======== */
+/* =================================== */
+
+/* =================================== */
+/* ======== Credit Page Styles ======== */
+/* =================================== */
+
+.credit-page-wrapper {
+    /* position: relative 추가 */
+    position: relative;
+    width: 100%;
+    min-height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5vw;
+    /* overflow: hidden 추가 */
+    overflow: hidden;
+}
+
+/* --- 아래 새로운 스타일 추가 --- */
+.threejs-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0; /* 카드 UI 뒤에 위치 */
+}
+
+.credit-card {
+    /* position: relative 및 z-index 추가 */
+    position: relative;
+    z-index: 1;
+    width: 90%;
+    max-width: 900px;
+    height: 60vh;
+    min-height: 500px;
+    background-color: rgba(10, 10, 12, 0.75);
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--color-primary-light);
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    cursor: pointer;
+
+    display: none; /*수정필요*/
+}
+
+.credit-tabs {
+  display: flex;
+  border-bottom: 1px solid var(--color-primary-light);
+  flex-shrink: 0;
+}
+
+.credit-tab-btn {
+  flex: 1;
+  background: none;
+  border: none;
+  color: var(--color-secondary);
+  padding: 15px;
+  font-family: var(--font-title);
+  font-size: clamp(0.9rem, 2.5vw, 1.2rem);
+  cursor: pointer;
+  transition: all 0.3s;
+  border-bottom: 3px solid transparent;
+}
+
+.credit-tab-btn:hover {
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+.credit-tab-btn.active {
+  color: #fff;
+  border-bottom-color: var(--color-primary);
+}
+
+.credit-content {
+  padding: 5%;
+  flex-grow: 1;
+  overflow-y: auto;
+  font-size: clamp(1rem, 2.8vw, 1.2rem);
+  line-height: 1.8;
+  white-space: pre-wrap; /* \n을 줄바꿈으로 인식 */
+  cursor: default;
+}
+
+/* GSAP TextPlugin의 커서 스타일 */
+.gsap-cursor {
+  display: inline-block;
+  width: 1px; /* 너비를 1px로 줄여 실제 커서처럼 보이게 함 */
+  height: 1.2em;
+  background-color: var(--color-secondary);
+  vertical-align: middle;
+  animation: blink 0.5s infinite;
+}
+
+@keyframes blink {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+}
+
+/* =================================== */
+/* == Credit Page Image List Styles == */
+/* =================================== */
+
+.image-download-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.copyright-notice {
+  font-size: clamp(0.8rem, 2vw, 1rem);
+  color: var(--color-secondary);
+  background-color: rgba(0, 0, 0, 0.2);
+  padding: 15px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+}
+
+.image-list-item {
+  display: grid;
+  grid-template-columns: 1fr auto auto;
+  gap: 20px;
+  align-items: center;
+  padding: 15px 10px;
+  border-bottom: 1px solid var(--color-border);
+  transition: background-color 0.2s;
+}
+
+.image-list-item:hover {
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+.image-usage {
+  font-weight: bold;
+}
+
+.image-filename {
+  color: var(--color-text-subtle);
+  font-style: italic;
+}
+
+.download-btn {
+  background-color: var(--color-primary);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  font-size: 1.2rem;
+  line-height: 30px;
+  text-align: center;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+.download-btn:hover {
+  background-color: var(--color-primary-light);
+  transform: scale(1.1);
+}
+
+.image-preview-tooltip {
+  position: fixed;
+  z-index: 9999;
+  width: 200px;
+  height: auto;
+  pointer-events: none; /* 마우스 이벤트 통과 */
+  border: 2px solid var(--color-primary);
+  border-radius: 5px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+  background-color: var(--color-bg-dark);
+}
+
+.image-preview-tooltip img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
 
 /* --- 반응형 디자인 --- */
 @media (max-width: 1200px) {
@@ -1972,7 +2348,7 @@ body {
 
   /* ClassPage 반응형 스타일 수정 */
   .class-page-container {
-    flex-direction: column; 
+    flex-direction: column;
     padding: 70px 20px 20px;
     height: 100%;
   }
@@ -1983,7 +2359,7 @@ body {
 
   .class-image-panel-mobile,
   .class-info-panel-mobile {
-    display: block; 
+    display: block;
     width: 100%;
     margin-bottom: 20px;
   }
@@ -2008,11 +2384,20 @@ body {
     margin: 0;
   }
   .suggest-page-container {
-    width: 90%;
-    padding: 20px;
+    width: 95%;
+    height: 95vh;
   }
 }
 @media (max-width: 768px) {
+  .credit-card {
+    height: 70vh;
+  }
+  .credit-tabs {
+    flex-wrap: wrap; /* 모바일에서 탭이 많아지면 줄바꿈 */
+  }
+  .credit-tab-btn {
+    flex-basis: 33.33%; /* 한 줄에 3개씩 */
+  }
   #main-background {
     background-size: cover;
     animation: backgroundPan 60s linear infinite;
@@ -2041,36 +2426,76 @@ body {
   .worldview-selected-title {
     font-size: 6vw;
   }
-  .suggest-list li {
-    grid-template-columns: 1fr;
-    gap: 5px;
-    padding: 12px;
-    position: relative;
-  }
   .list-title {
     font-size: 1.1rem;
     margin-bottom: 5px;
-  }
-  .list-author {
-    position: absolute;
-    bottom: 12px;
-    left: 12px;
-    font-size: 0.8rem;
-  }
-  .list-date {
-    position: absolute;
-    bottom: 12px;
-    right: 12px;
-    font-size: 0.8rem;
   }
   .suggest-page-wrapper {
     padding: 20px 0;
   }
   .suggest-page-container {
+    width: 98%;
+    padding: 15px;
+  }
+  .suggest-modal-content,
+  .suggest-detail-modal-content {
     width: 95%;
   }
 }
+@media (max-width: 600px) {
+  .image-list-item {
+    grid-template-columns: 1fr auto;
+    gap: 10px;
+  }
+  .image-filename {
+    display: none; /* 모바일에서 파일 이름 숨기기 */
+  }
+  .suggest-list li {
+    /* grid에서 block으로 변경하여 유연한 레이아웃으로 전환 */
+    display: block;
+    position: relative;
+    padding-bottom: 35px; /* 하단 정보 영역을 위한 여백 확보 */
+    gap: 5px;
+    padding: 12px;
+  }
+
+  /* 모바일에서 새로 추가된 div의 위치를 설정합니다. */
+  .suggest-list li > div {
+    position: absolute;
+    bottom: 12px;
+    left: 12px;
+    right: 12px;
+    width: auto; /* 너비를 자동으로 채우도록 변경 */
+    display: flex;
+    justify-content: flex-end;
+    gap: 20px;
+  }
+
+  /* 기존에 position:absolute 였던 자식 span들의 스타일을 초기화합니다. */
+  .list-author,
+  .list-date {
+    position: static;
+    width: auto; /* 너비 자동 설정 */
+    font-size: 0.8rem;
+  }
+
+  .search-bar-container {
+    align-items: stretch;
+  }
+
+  .search-input {
+    max-width: 100%;
+  }
+}
 @media (max-width: 480px) {
+  .credit-card {
+    width: 95%;
+    height: 80vh;
+  }
+  .credit-tab-btn {
+    flex-basis: 50%; /* 한 줄에 2개씩 */
+  }
+
   #main-menu-container {
     max-width: 95%;
   }
@@ -2094,5 +2519,3 @@ body {
     padding: 20px;
   }
 }
-
-

@@ -12,6 +12,7 @@ import ArkPage from './pages/ArkPage';
 import ClassPage from './pages/ClassPage';
 import LoadingScreen from './components/LoadingScreen';
 import SuggestPage from './pages/SuggestPage';
+import CreditPage from './pages/CreditPage';
 
 
 import backIcon from './assets/images/back.svg';
@@ -135,8 +136,10 @@ const App = () => {
         return <ArkPage initialData={initialData} />;
       case 'class':
         return <ClassPage initialData={initialData} />;
-      case 'suggest': // suggest 케이스 추가
+      case 'suggest': 
         return <SuggestPage />;
+      case 'credit':
+        return <CreditPage />;
       default: 
         return null;
     }
