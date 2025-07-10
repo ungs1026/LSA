@@ -9,7 +9,7 @@ import bgCharacters from '../assets/images/bg_img/character.jpg';
 import bgBoss from '../assets/images/bg_img/bossraid.jpg';
 import bgClass from '../assets/images/bg_img/class_bg.png';
 import bgSuggest from '../assets/images/bg_img/suggest.png';
-import bgCredit from '../assets/images/bg_img/suggest.png'; // 임시 배경
+import bgCredit from '../assets/images/bg_img/credit.png'; // 임시 배경
 
 
 // 에스더 캐릭터 이미지 (nb, bg, skill)
