@@ -234,22 +234,24 @@ const SuggestDetailModal = ({
           onChange={(e) => setContent(e.target.value)}
           required
         />
-        <div className="comment-form-meta">
-          <input
-            type="text"
-            placeholder="닉네임"
-            value={nickname}
-            onChange={(e) => setNickname(e.target.value)}
-            required
-          />
-          <input
-            type="password"
-            placeholder="비밀번호"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
-          <button type="submit">등록</button>
+        <div>
+          <div className="comment-form-meta">
+            <input
+              type="text"
+              placeholder="닉네임"
+              value={nickname}
+              onChange={(e) => setNickname(e.target.value)}
+              required
+            />
+            <input
+              type="password"
+              placeholder="비밀번호"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+            />
+          </div>
+          <button className="comment_modal_btn" type="submit">등록</button>
         </div>
       </form>
     );
@@ -295,9 +297,32 @@ const SuggestDetailModal = ({
   );
 };
 
+// --- 2. 시계 관련 로직을 별도 컴포넌트로 분리 ---
+const LiveClock = () => {
+    const [currentTime, setCurrentTime] = useState(new Date());
+
+    useEffect(() => {
+        const timer = setInterval(() => setCurrentTime(new Date()), 1000);
+        return () => clearInterval(timer);
+    }, []);
+
+    return (
+        <div className="live-clock">
+            {currentTime.toLocaleString("ko-KR", {
+              year: "numeric",
+              month: "long",
+              day: "numeric",
+              weekday: "long",
+              hour: "2-digit",
+              minute: "2-digit",
+              second: "2-digit",
+            })}
+        </div>
+    );
+};
+
 // 메인 페이지 컴포넌트
 const SuggestPage = () => {
-  // --- 기존 상태 (드래그 관련 상태 제거) ---
   const [suggestions, setSuggestions] = useState([]);
   const [comments, setComments] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -313,17 +338,12 @@ const SuggestPage = () => {
   const [searchType, setSearchType] = useState("title");
   const youtubeVideoId = "jOvTuiwLcuI";
 
-  // --- 창 제어 (최소화) 및 시계 상태 ---
   const [isMinimized, setIsMinimized] = useState(false);
-  const [currentTime, setCurrentTime] = useState(new Date());
+  
+  // --- 1. currentTime 상태와 관련 useEffect 제거 ---
+  // const [currentTime, setCurrentTime] = useState(new Date());
+  // useEffect(() => { ... });
 
-  // 실시간 시계 기능
-  useEffect(() => {
-    const timer = setInterval(() => setCurrentTime(new Date()), 1000);
-    return () => clearInterval(timer);
-  }, []);
-
-  // 최소화/복원 기능
   const toggleMinimize = () => {
     setIsMinimized(!isMinimized);
   };
@@ -491,17 +511,8 @@ const SuggestPage = () => {
         className={`suggest-page-container ${isMinimized ? "minimized" : ""}`}
       >
         <div className="window-header">
-          <div className="live-clock">
-            {currentTime.toLocaleString("ko-KR", {
-              year: "numeric",
-              month: "long",
-              day: "numeric",
-              weekday: "long",
-              hour: "2-digit",
-              minute: "2-digit",
-              second: "2-digit",
-            })}
-          </div>
+          {/* 3. 분리된 LiveClock 컴포넌트 사용 */}
+          <LiveClock />
           <div className="window-controls">
             <button onClick={toggleMinimize} className="minimize-btn">
               {isMinimized ? "🗖" : "—"}

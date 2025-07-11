@@ -1537,6 +1537,10 @@ body {
   background-color: rgba(0, 0, 0, 0.3);
 }
 
+.youtube-background {
+  z-index: -1;
+}
+
 .suggest-page-container {
   width: 80%;
   max-width: 1400px;
@@ -1871,6 +1875,12 @@ body {
   gap: 10px;
 }
 
+.comment-form > div {
+  display: flex;
+  align-items: flex-end;
+  flex-direction: column;
+}
+
 .comment-form textarea {
   width: 100%;
   padding: 10px;
@@ -1887,10 +1897,12 @@ body {
   display: flex;
   gap: 10px;
   align-items: center;
+  margin-bottom: 10px;
 }
 
 .comment-form-meta input {
   flex: 1;
+  width: 100%;
   padding: 8px;
   background-color: var(--color-bg);
   border: 1px solid var(--color-border);
@@ -1898,7 +1910,7 @@ body {
   color: var(--color-text);
 }
 
-.comment-form-meta button {
+.comment_modal_btn {
   background-color: var(--color-primary);
   color: #fff;
   border: none;
@@ -2531,7 +2543,7 @@ body {
   }
   .suggest-page-container {
     width: 95%;
-    height: 95vh;
+    height: 80%;
   }
 }
 @media (max-width: 768px) {
@@ -2592,8 +2604,8 @@ body {
   .info-window {
     /* 인라인 스타일을 덮어쓰기 위해 !important 사용 */
     width: 100% !important;
-    height: 100% !important;
-    top: 0 !important;
+    height: 88% !important;
+    top: 10% !important;
     left: 0 !important;
     border-radius: 0;
     border: none;
