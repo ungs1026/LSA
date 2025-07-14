@@ -133,7 +133,7 @@
         }
 
         .section {
-            padding: 120px 5%;
+            padding: 180px 5%;
             max-width: 1200px;
             margin: 0 auto;
             min-height: 100vh;
@@ -151,10 +151,10 @@
             text-shadow: 0 0 10px rgba(163, 134, 90, 0.5);
         }
         .section-subtitle {
+            width: 100%;
             font-size: 1.25rem;
             color: var(--color-secondary);
             margin-bottom: 50px;
-            max-width: 800px;
             line-height: 1.7;
         }
 
@@ -237,7 +237,7 @@
         }
 
         .diagram-img {
-            max-width: 100%;
+            max-width: 80%;
             height: auto;
             background-color: rgba(255, 255, 255, 0.95);
             border-radius: 8px;
@@ -308,7 +308,7 @@
                     <p class="section-subtitle">
                         React 기반의 SPA(Single Page Application) 구조에 Supabase를 BaaS(Backend as a Service)로 결합하여, 서버리스 환경에서 효율적인 데이터 관리와 동적인 사용자 경험을 제공합니다.
                     </p>
-                    <img src="https://i.imgur.com/uYgA1fU.png" alt="System Architecture Diagram" class="diagram-img">
+                    <img src="./src/assets/images/architecture.png" alt="System Architecture Diagram" class="diagram-img">
                 </div>
             </section>
 
@@ -318,7 +318,7 @@
                     <p class="section-subtitle">
                         주요 컴포넌트 간의 관계를 시각화한 다이어그램입니다. App 컴포넌트가 중앙에서 상태를 관리하며, 각 페이지와 하위 컴포넌트들이 데이터를 전달받아 UI를 렌더링하는 구조를 보여줍니다.
                     </p>
-                    <img src="https://i.imgur.com/y3A5E9O.png" alt="Class Diagram" class="diagram-img">
+                    <img src="./src/assets/images/classDiagram.png" alt="Class Diagram" class="diagram-img">
                 </div>
             </section>
 
@@ -335,13 +335,13 @@
                         <p>캐릭터, 보스, 스토리 등 아카이브 내 모든 데이터를 한 번에 검색하여 원하는 정보에 빠르게 접근할 수 있습니다.</p>
                     </div>
                     <div class="card reveal">
-                        <h3>인터랙티브 UI</h3>
-                        <p>GSAP, Three.js 등을 활용한 3D 카드, 동적 모달, 인터랙티브 맵 등 시각적 즐거움을 더하는 요소를 통해 정보 탐색의 몰입감을 높였습니다.</p>
+                        <h3>Interactive UI</h3>
+                        <p>GSAP, Three.js 등을 활용한 Interaction Animation, 3D 카드, 동적 모달, 인터랙티브 맵 등 시각적 즐거움을 더하는 요소를 통해 정보 탐색의 몰입감을 높였습니다.</p>
                     </div>
                     <div class="card reveal">
                         <h3>렌더링 방식 (CSR)</h3>
                         <p>
-                            본 프로젝트는 React 기반의 **SPA(Single Page Application)**로, **CSR(Client-Side Rendering)** 방식을 채택했습니다. 사용자가 최초 접속 시 브라우저는 최소한의 HTML과 JavaScript를 다운로드하고, 이후 React가 동적으로 페이지를 렌더링합니다. 이 방식은 초기 로딩 후에는 서버 요청 없이 부드러운 페이지 전환이 가능해 네이티브 앱과 유사한 사용자 경험을 제공합니다.
+                            본 프로젝트는 React 기반의 SPA(Single Page Application)로, CSR(Client-Side Rendering) 방식을 채택했습니다. 사용자가 최초 접속 시 브라우저는 최소한의 HTML과 JavaScript를 다운로드하고, 이후 React가 동적으로 페이지를 렌더링합니다. 이 방식은 초기 로딩 후에는 서버 요청 없이 부드러운 페이지 전환이 가능해 네이티브 앱과 유사한 사용자 경험을 제공합니다.
                         </p>
                     </div>
                     <div class="card reveal">
@@ -396,13 +396,13 @@
                     <div class="card reveal">
                         <h3>공식 사이트와의 비교</h3>
                         <p>
-                           로스트아크 공식 홈페이지는 게임 소식, 이벤트, 가이드 등 포괄적인 정보를 제공하는 '포털'의 역할을 합니다. 반면, 본 '아카이브'는 방대한 정보 중 '세계관과 스토리'에 집중하여, 분산된 정보를 한곳에 모아 체계적으로 제공함으로써 Lore-Friendly한 경험을 선사하는 데 목적이 있습니다.
+                           로스트아크 공식 홈페이지는 게임 소식, 이벤트, 가이드 등 포괄적인 정보를 제공하는 '포털'의 역할을 합니다. 반면, 본 '아카이브'는 방대한 정보 중 '스토리'에 집중하여, 분산된 정보를 한곳에 모아 체계적으로 제공함으로써 Lore-Friendly한 경험을 선사하는 데 목적이 있습니다.
                         </p>
                     </div>
                     <div class="card reveal">
                         <h3>프로젝트의 독창성</h3>
                         <p>
-                            단순 정보 나열을 넘어, 3D 카드, 인터랙티브 맵, 동적 애니메이션 등 게임의 판타지적 분위기를 웹에서 느낄 수 있도록 시각적, 인터랙티브 요소를 강화했습니다. 이는 정보의 전달력을 높이고 사용자의 몰입감을 극대화하는 핵심적인 차별점입니다.
+                            단순 정보 나열을 넘어, 3D 카드, 인터랙티브 맵, 동적 애니메이션, 게임에서 제공하는 UI 등 게임의 분위기를 웹에서 느낄 수 있도록 시각적, Interactive 요소를 강화했습니다. 이는 정보의 전달력을 높이고 사용자의 몰입감을 극대화하는 핵심적인 차별점입니다.
                         </p>
                     </div>
                 </div>
