@@ -41,8 +41,6 @@ const InteractiveMap = ({ stories, onStoryClick }) => {
     const traveler = travelerRef.current;
     if (!path || !traveler || path.getTotalLength() === 0) return;
 
-    // 1. 경로 그리기 애니메이션 제거
-
     // 2. 객체가 경로를 따라 움직이는 애니메이션만 남김
     const motionAnimation = gsap.to(traveler, {
       motionPath: {

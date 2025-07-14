@@ -1,16 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import ImageViewerModal from './ImageViewerModal'; // 새로 만든 컴포넌트 임포트
+import ImageViewerModal from './ImageViewerModal';
 
-const CharacterModal = ({ character, isOpen, onClose }) => {
+const CharacterModal = ({ character, isOpen, onClose, language }) => {
   const [selectedSkill, setSelectedSkill] = useState(null);
-  // 이미지 뷰어 모달을 위한 상태 추가
   const [isViewerOpen, setIsViewerOpen] = useState(false);
   const [viewerImageUrl, setViewerImageUrl] = useState('');
 
   useEffect(() => {
     if (!isOpen) {
       setSelectedSkill(null);
-      // 캐릭터 모달이 닫히면 이미지 뷰어 모달도 닫기
       setIsViewerOpen(false);
     } else {
       setSelectedSkill(null);
@@ -21,13 +19,11 @@ const CharacterModal = ({ character, isOpen, onClose }) => {
     return null;
   }
 
-  // 이미지 뷰어 열기 핸들러
   const openImageViewer = (url) => {
     setViewerImageUrl(url);
     setIsViewerOpen(true);
   };
 
-  // 이미지 뷰어 닫기 핸들러
   const closeImageViewer = () => {
     setIsViewerOpen(false);
   };
@@ -41,8 +37,13 @@ const CharacterModal = ({ character, isOpen, onClose }) => {
     setSelectedSkill(prevSkill => prevSkill && prevSkill.name === skill.name ? null : skill);
   };
 
-  // 표시할 메인 이미지를 결정하는 변수
   const mainImageUrl = character.group === '카제로스 군단장' ? character.bg : character.img;
+
+  const name = language === 'en' && character.type === 'character' ? character.eng_name : character.name;
+  const subtitle = language === 'en' && character.type === 'character' ? character.eng_subtitle : character.subtitle;
+  const basicInfo = language === 'en' && character.type === 'character' ? character.eng_basicInfo : character.basicInfo;
+  const combatInfo = language === 'en' && character.type === 'character' ? character.eng_combatInfo : character.combatInfo;
+  const description = language === 'en' && character.type === 'character' ? character.eng_description : character.description;
 
   return (
     <>
@@ -52,19 +53,18 @@ const CharacterModal = ({ character, isOpen, onClose }) => {
           
           <img 
             src={character.bg} 
-            alt={`${character.name} background`} 
+            alt={`${name} background`} 
             className="character-modal-img-top"
             onError={(e) => handleImageError(e)}
           />
 
           <div className="char-info-container">
-            {/* --- 좌측 정보 패널 --- */}
             <div className="char-info-left">
               <div className="char-group-display">
                 <span>{character.group}</span>
               </div>
-              <h2 className="char-info-name">{character.name}</h2>
-              <p className="char-info-subtitle">{character.subtitle}</p>
+              <h2 className="char-info-name">{name}</h2>
+              <p className="char-info-subtitle">{subtitle}</p>
               
               <div className="char-info-divider"></div>
 
@@ -104,39 +104,35 @@ const CharacterModal = ({ character, isOpen, onClose }) => {
               )}
             </div>
 
-            {/* --- 중앙 이미지 패널 --- */}
             <div className="char-info-center">
               <img 
                 src={mainImageUrl} 
-                alt={character.name} 
+                alt={name} 
                 className="character-modal-img"
                 onError={(e) => handleImageError(e)}
-                // 클릭 시 이미지 뷰어 열기 이벤트 추가
                 onClick={() => openImageViewer(mainImageUrl)}
                 style={{ cursor: 'pointer' }}
               />
             </div>
 
-            {/* --- 우측 설명 패널 --- */}
             <div className="char-info-right">
               <div className="char-info-description">
                 <h3 className="description-title">기본 정보</h3>
-                <p>{character.basicInfo}</p>
+                <p>{basicInfo}</p>
                 <div className="char-info-divider small"></div>
                 
                 <h3 className="description-title">능력</h3>
-                <p>{character.combatInfo}</p>
+                <p>{combatInfo}</p>
                 <div className="char-info-divider small"></div>
 
                 <h3 className="description-title">서사</h3>
-                <p>{character.description}</p>
+                <p>{description}</p>
               </div>
             </div>
           </div>
         </div>
       </div>
       
-      {/* 이미지 뷰어 모달 렌더링 */}
       <ImageViewerModal
         isOpen={isViewerOpen}
         onClose={closeImageViewer}

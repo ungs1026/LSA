@@ -7,10 +7,10 @@ const CharactersPage = ({ initialData }) => {
   const [activeTab, setActiveTab] = useState('current-esthers');
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedChar, setSelectedChar] = useState(null);
+  const [language, setLanguage] = useState('ko');
 
   useEffect(() => {
     if (initialData && initialData.type === 'character') {
-      // initialData에 맞는 탭으로 전환
       if (initialData.source === 'allEsthersData' && initialData.group === '(구) 에스더') setActiveTab('old-esthers');
       else if (initialData.source === 'allEsthersData') setActiveTab('current-esthers');
       else if (initialData.source === 'commanders') setActiveTab('commanders');
@@ -29,6 +29,10 @@ const CharactersPage = ({ initialData }) => {
     setSelectedChar(null);
   };
 
+  const handleToggleLanguage = () => {
+    setLanguage(prev => prev === 'ko' ? 'en' : 'ko');
+  };
+
   const renderContent = () => {
     let characterList;
     switch (activeTab) {
@@ -42,6 +46,7 @@ const CharactersPage = ({ initialData }) => {
         key={`${activeTab}-${item.name}`} 
         item={item} 
         onClick={() => handleCardClick(item)} 
+        language={language}
       />
     ));
   };
@@ -65,7 +70,11 @@ const CharactersPage = ({ initialData }) => {
         character={selectedChar} 
         isOpen={isModalOpen} 
         onClose={closeModal} 
+        language={language}
       />
+      <button onClick={handleToggleLanguage} className="language-toggle-button">
+        {language === 'ko' ? 'KO' : 'EN'}
+      </button>
     </div>
   );
 };
