@@ -1,6 +1,7 @@
-import React, { useState, useRef, useEffect, useLayoutEffect } from 'react';
+import React, { useState, useRef, useEffect, useLayoutEffect, useContext } from 'react';
 import { gsap } from 'gsap';
 import { TextPlugin } from 'gsap/TextPlugin';
+import { LanguageContext } from '../contexts/LanguageContext'; // LanguageContext import
 
 gsap.registerPlugin(TextPlugin);
 
@@ -8,6 +9,7 @@ const StoryModal = ({ story, isOpen, onClose }) => {
   const modalContentRef = useRef(null); // 모달 콘텐츠 영역의 ref
   const animationRef = useRef(null);
   const [isScrolled, setIsScrolled] = useState(false); // 스크롤 상태를 관리하는 state
+  const { language } = useContext(LanguageContext); // 언어 컨텍스트 사용
 
   // 스크롤 이벤트 핸들러 추가
   useEffect(() => {
@@ -47,10 +49,14 @@ const StoryModal = ({ story, isOpen, onClose }) => {
       const paragraphs = modalContentRef.current.querySelectorAll('.story-paragraph');
       if (paragraphs.length > 0) {
         paragraphs.forEach(p => { p.textContent = ''; });
+        
+        // 언어에 따라 컨텐츠 선택
+        const content = language === 'ko' ? story.content : story.eng_content;
 
         const tl = gsap.timeline();
         paragraphs.forEach((p, index) => {
-          const originalText = story.content.split('\n\n')[index];
+          // 선택된 언어의 컨텐츠로 애니메이션 적용
+          const originalText = content.split('\n\n')[index];
           if (originalText) {
             tl.to(p, {
               duration: originalText.length * 0.05,
@@ -68,7 +74,7 @@ const StoryModal = ({ story, isOpen, onClose }) => {
         animationRef.current.kill();
       }
     };
-  }, [isOpen, story]);
+  }, [isOpen, story, language]); // language를 의존성 배열에 추가
 
   const handleAnimationSkip = () => {
     if (animationRef.current && animationRef.current.isActive()) {
@@ -80,7 +86,9 @@ const StoryModal = ({ story, isOpen, onClose }) => {
     return null;
   }
 
-  const paragraphs = story.content.split('\n\n');
+  // 언어에 따라 본문 내용 선택
+  const content = language === 'ko' ? story.content : story.eng_content;
+  const paragraphs = content.split('\n\n');
   const images = story.images || [];
 
   const handleImageError = (e) => {
@@ -95,15 +103,15 @@ const StoryModal = ({ story, isOpen, onClose }) => {
 
   return (
     <div className="modal-overlay active" onClick={onClose}>
-      {/* modal-content에 ref와 스크롤 관련 클래스를 추가합니다. */}
       <div className="modal-content" onClick={handleModalContentClick} ref={modalContentRef}>
-        {/* 스크롤 상태에 따라 'scrolled' 클래스를 동적으로 추가합니다. */}
         <span className={`modal-close-btn ${isScrolled ? 'scrolled' : ''}`} onClick={onClose}>&times;</span>
-        <h2 id="modal-title">{story.title}</h2>
+        {/* 언어에 따라 제목 선택 */}
+        <h2 id="modal-title">{language === 'ko' ? story.title : story.eng_title}</h2>
         <div id="modal-body">
           {paragraphs.map((paragraph, index) => (
             <React.Fragment key={index}>
               <p className="story-paragraph">
+                {/* 애니메이션 대상이 아닐 경우에만 텍스트를 직접 렌더링 */}
                 {!(story.title.includes('서론') || story.title.includes('결론')) ? paragraph : ''}
               </p>
               {images[index] && (
