@@ -51,7 +51,7 @@ const SuggestModal = ({ isOpen, onClose, onSave, initialData }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!title || !nickname || !password || !content) {
-      alert("모든 항목을 입력해주세요.");
+      alert("Please enter all items.");
       return;
     }
     onSave({ title, author_nickname: nickname, password, content });
@@ -68,11 +68,11 @@ const SuggestModal = ({ isOpen, onClose, onSave, initialData }) => {
         <span className="modal-close-btn" onClick={onClose}>
           ×
         </span>
-        <h2>{isEditMode ? "건의사항 수정" : "건의사항 작성"}</h2>
+        <h2>{isEditMode ? "Edit" : "Write"}</h2>
         <form onSubmit={handleSubmit} className="suggest-form">
           <input
             type="text"
-            placeholder="제목"
+            placeholder="Title"
             value={title}
             onChange={(e) => setTitle(e.target.value)}
             required
@@ -80,7 +80,7 @@ const SuggestModal = ({ isOpen, onClose, onSave, initialData }) => {
           <div className="form-row">
             <input
               type="text"
-              placeholder="닉네임"
+              placeholder="Nickname"
               value={nickname}
               onChange={(e) => setNickname(e.target.value)}
               required
@@ -88,20 +88,20 @@ const SuggestModal = ({ isOpen, onClose, onSave, initialData }) => {
             />
             <input
               type="password"
-              placeholder="비밀번호"
+              placeholder="Password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               required
             />
           </div>
           <textarea
-            placeholder="내용"
+            placeholder="Content"
             value={content}
             onChange={(e) => setContent(e.target.value)}
             required
           />
           <button type="submit" className="form-submit-btn">
-            {isEditMode ? "수정하기" : "작성하기"}
+            {isEditMode ? "Edit" : "Write"}
           </button>
         </form>
       </div>
@@ -125,31 +125,31 @@ const SuggestDetailModal = ({
   if (!isOpen || !suggestion) return null;
 
   const handleEdit = () => {
-    const password = prompt("수정하려면 게시글 비밀번호를 입력하세요.");
+    const password = prompt("Please enter your post password to modify it.");
     if (password) {
       const hashedInput = CryptoJS.MD5(password).toString();
       if (hashedInput === suggestion.password) {
         onEdit(suggestion);
       } else {
-        alert("비밀번호가 일치하지 않습니다.");
+        alert("Password doesn't match.");
       }
     }
   };
 
   const handleDelete = () => {
-    const password = prompt("삭제하려면 게시글 비밀번호를 입력하세요.");
+    const password = prompt("Please enter your post password to remove it.");
     if (password) {
       const hashedInput = CryptoJS.MD5(password).toString();
       if (hashedInput === suggestion.password) {
         if (
           window.confirm(
-            "정말로 게시글을 삭제하시겠습니까? 관련 댓글도 모두 삭제됩니다."
+            "Are you sure you want to delete the post? All relevant comments will be deleted as well."
           )
         ) {
           onDelete(suggestion.id);
         }
       } else {
-        alert("비밀번호가 일치하지 않습니다.");
+        alert("Password doesn't match.");
       }
     }
   };
@@ -205,7 +205,7 @@ const SuggestDetailModal = ({
     const handleSubmit = (e) => {
       e.preventDefault();
       if (!nickname || !password || !content) {
-        alert("닉네임, 비밀번호, 내용을 모두 입력해주세요.");
+        alert("Please enter your nickname, password, and content.");
         return;
       }
       onAddComment({
@@ -228,7 +228,7 @@ const SuggestDetailModal = ({
       >
         <textarea
           placeholder={
-            parentId ? "답글을 입력하세요..." : "댓글을 입력하세요..."
+            parentId ? "Please enter your reply..." : "Please type in the comments..."
           }
           value={content}
           onChange={(e) => setContent(e.target.value)}
@@ -238,20 +238,20 @@ const SuggestDetailModal = ({
           <div className="comment-form-meta">
             <input
               type="text"
-              placeholder="닉네임"
+              placeholder="Nickname"
               value={nickname}
               onChange={(e) => setNickname(e.target.value)}
               required
             />
             <input
               type="password"
-              placeholder="비밀번호"
+              placeholder="Password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               required
             />
           </div>
-          <button className="comment_modal_btn" type="submit">등록</button>
+          <button className="comment_modal_btn" type="submit">Submit</button>
         </div>
       </form>
     );
@@ -268,23 +268,23 @@ const SuggestDetailModal = ({
             ×
           </span>
           <div className="detail-modal-actions">
-            <button onClick={handleEdit}>수정</button>
-            <button onClick={handleDelete}>삭제</button>
+            <button onClick={handleEdit}>Edit</button>
+            <button onClick={handleDelete}>Delete</button>
           </div>
         </div>
         <div className="detail-modal-body">
           <h2 className="detail-title">{suggestion.title}</h2>
           <div className="detail-meta">
-            <span>작성자: {suggestion.author_nickname}</span>
+            <span>Writer: {suggestion.author_nickname}</span>
             <span>
-              작성일: {new Date(suggestion.created_at).toLocaleDateString()}
+              Date: {new Date(suggestion.created_at).toLocaleDateString()}
             </span>
           </div>
           <p className="detail-content">{suggestion.content}</p>
 
           <div className="comment-section">
             <hr />
-            <h4>댓글 ({comments.length})</h4>
+            <h4>Comments ({comments.length})</h4>
             <CommentThread parentId={null} />
             <CommentForm
               suggestId={suggestion.id}
@@ -308,7 +308,7 @@ const LiveClock = () => {
 
     return (
         <div className="live-clock">
-            {currentTime.toLocaleString("ko-KR", {
+            {currentTime.toLocaleString("en", {
               year: "numeric",
               month: "long",
               day: "numeric",
@@ -339,10 +339,6 @@ const SuggestPage = () => {
   const youtubeVideoId = "jOvTuiwLcuI";
 
   const [isMinimized, setIsMinimized] = useState(false);
-  
-  // --- 1. currentTime 상태와 관련 useEffect 제거 ---
-  // const [currentTime, setCurrentTime] = useState(new Date());
-  // useEffect(() => { ... });
 
   const toggleMinimize = () => {
     setIsMinimized(!isMinimized);
@@ -365,7 +361,7 @@ const SuggestPage = () => {
 
     if (error) {
       console.error("Error fetching suggestions:", error);
-      alert(`데이터를 불러오는 중 오류가 발생했습니다: ${error.message}`);
+      alert(`Error fetching data: ${error.message}`);
     } else {
       setSuggestions(data);
       setTotalPages(Math.ceil(count / itemsPerPage));
@@ -407,12 +403,12 @@ const SuggestPage = () => {
           password: hashedPassword,
         })
         .eq("id", editingSuggestion.id);
-      if (error) alert(`수정 중 오류가 발생했습니다: ${error.message}`);
+      if (error) alert(`An error occurred during correction: ${error.message}`);
     } else {
       const { error } = await supabase
         .from("suggest")
         .insert([{ ...suggestionData, password: hashedPassword }]);
-      if (error) alert(`작성 중 오류가 발생했습니다: ${error.message}`);
+      if (error) alert(`Error creating: ${error.message}`);
     }
 
     setWriteModalOpen(false);
@@ -432,7 +428,7 @@ const SuggestPage = () => {
 
   const handleDelete = async (id) => {
     const { error } = await supabase.from("suggest").delete().eq("id", id);
-    if (error) alert(`삭제 중 오류가 발생했습니다: ${error.message}`);
+    if (error) alert(`Error deleting: ${error.message}`);
     else {
       alert("삭제되었습니다.");
       setDetailModalOpen(false);
@@ -447,13 +443,13 @@ const SuggestPage = () => {
       .from("comment")
       .insert([{ ...restData, password: hashedPassword }]);
 
-    if (error) alert(`댓글 작성 중 오류가 발생했습니다: ${error.message}`);
+    if (error) alert(`Error writing comments: ${error.message}`);
     else await fetchComments(commentData.suggest_id);
   };
 
   const handleDeleteComment = async (commentId) => {
     const password = prompt(
-      '댓글을 삭제하려면 "게시글"의 비밀번호를 입력하세요.'
+      'To delete the comment, enter the password for the "post".'
     );
     if (password) {
       const hashedInput = CryptoJS.MD5(password).toString();
@@ -462,10 +458,10 @@ const SuggestPage = () => {
           .from("comment")
           .delete()
           .eq("id", commentId);
-        if (error) alert(`댓글 삭제 중 오류가 발생했습니다: ${error.message}`);
+        if (error) alert(`Error deleting comments: ${error.message}`);
         else await fetchComments(selectedSuggestion.id);
       } else {
-        alert("게시글의 비밀번호가 일치하지 않습니다.");
+        alert("The password in the post does not match.");
       }
     }
   };
@@ -522,7 +518,7 @@ const SuggestPage = () => {
 
         <div className="board-content">
           <div className="page-header">
-            <h1>건의 게시판</h1>
+            <h1>Suggest Board</h1>
             <button
               className="write-btn"
               onClick={() => {
@@ -530,7 +526,7 @@ const SuggestPage = () => {
                 setWriteModalOpen(true);
               }}
             >
-              글쓰기
+              Write
             </button>
           </div>
           <div className={`suggest-list-container ${loading ? "loading" : ""}`}>
@@ -560,8 +556,8 @@ const SuggestPage = () => {
               onChange={(e) => setSearchType(e.target.value)}
               className="search-select"
             >
-              <option value="title">제목</option>
-              <option value="author_nickname">작성자</option>
+              <option value="title">Title</option>
+              <option value="author_nickname">Writer</option>
             </select>
             <input
               type="text"
@@ -572,7 +568,7 @@ const SuggestPage = () => {
               onKeyPress={(e) => e.key === "Enter" && handleSearch()}
             />
             <button onClick={handleSearch} className="search-button">
-              검색
+              Search
             </button>
           </div>
         </div>

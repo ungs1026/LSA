@@ -56,10 +56,10 @@ const CharactersPage = ({ initialData }) => {
       <h1 className="page-title">CHARACTERS</h1>
       <div id="boss-toggle-buttons">
         <button className={`toggle-btn ${activeTab === 'old-esthers' ? 'active' : ''}`} onClick={() => setActiveTab('old-esthers')}>
-          (구) 에스더
+          (구) Esther
         </button>
         <button className={`toggle-btn ${activeTab === 'current-esthers' ? 'active' : ''}`} onClick={() => setActiveTab('current-esthers')}>
-          에스더
+          Esther
         </button>
         <button className={`toggle-btn ${activeTab === 'commanders' ? 'active' : ''}`} onClick={() => setActiveTab('commanders')}>
           카제로스 군단장

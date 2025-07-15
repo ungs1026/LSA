@@ -1,10 +1,11 @@
-import React, { useState, useEffect, useRef, useMemo } from 'react';
+import React, { useState, useEffect, useRef, useMemo, useContext } from 'react';
 import { stories } from '../data/db';
 import StoryModal from '../components/StoryModal';
 import { gsap } from 'gsap';
 import map from '../assets/images/map.png';
 import travelerIcon from '../assets/images/traveler.png'; // 움직이는 객체 이미지 import
 import { MotionPathPlugin } from 'gsap/MotionPathPlugin';
+import { LanguageContext } from '../contexts/LanguageContext';
 
 gsap.registerPlugin(MotionPathPlugin);
 
@@ -97,6 +98,7 @@ const InteractiveMap = ({ stories, onStoryClick }) => {
 const StoryPage = ({ pageType, title, initialData }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedStory, setSelectedStory] = useState(null);
+  const { language } = useContext(LanguageContext);
   const [isDesktopView, setIsDesktopView] = useState(window.innerWidth > 1024);
 
   useEffect(() => {

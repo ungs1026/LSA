@@ -375,12 +375,12 @@ body {
   background-color: rgba(163, 134, 90, 0.2);
 }
 .result-name {
-  font-size: 1.2vw;
+  font-size: min(1.2vw, 14px);
   font-weight: 500;
   word-break: break-all;
 }
 .result-name span {
-  font-size: 1vw;
+  font-size: min(1vw, 14px);
 }
 .result-source {
   font-size: 0.8rem;
@@ -1254,15 +1254,15 @@ body {
   display: flex;
   background-size: cover;
   background-position: center;
-  transition: background-image 0.5s ease-in-out;
+  transition: background-image 0.5s ease-in-out;  
   border: 1px solid rgba(163, 134, 90, 0.2);
 }
 .class-preview-image-wrapper {
   position: absolute;
-  top: 0;
-  left: -24%;
-  width: 100%;
-  height: 100%;
+  top: 8%;
+  left: -14%;
+  width: 90%;
+  height: 80%;
   pointer-events: none;
   display: flex;
   align-items: center;
