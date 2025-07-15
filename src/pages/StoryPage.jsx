@@ -9,21 +9,28 @@ import { LanguageContext } from '../contexts/LanguageContext';
 
 gsap.registerPlugin(MotionPathPlugin);
 
-const StoryList = ({ stories, onStoryClick }) => (
-  <div id="story-list">
-    {stories.map((story, index) => (
-      <div key={index} className="story-title-item" onClick={() => onStoryClick(story)}>
-        {story.title}
-      </div>
-    ))}
-  </div>
-);
+const StoryList = ({ stories, onStoryClick }) => {
+  // 언어 컨텍스트를 사용하여 현재 언어를 가져옵니다.
+  const { language } = useContext(LanguageContext);
+  return (
+    <div id="story-list">
+      {stories.map((story, index) => (
+        <div key={index} className="story-title-item" onClick={() => onStoryClick(story)}>
+          {/* 언어에 따라 다른 제목을 표시합니다. */}
+          {language === 'ko' ? story.title : story.eng_title}
+        </div>
+      ))}
+    </div>
+  );
+};
 
 const InteractiveMap = ({ stories, onStoryClick }) => {
   const pathRef = useRef(null);
   const travelerRef = useRef(null);
   const mapWidth = 1200;
   const mapHeight = 662;
+  // 언어 컨텍스트를 사용하여 현재 언어를 가져옵니다.
+  const { language } = useContext(LanguageContext);
 
   const pathData = useMemo(() => {
     if (stories.length === 0) return '';
@@ -86,7 +93,8 @@ const InteractiveMap = ({ stories, onStoryClick }) => {
           className="map-button"
           style={{ top: story.coords.top, left: story.coords.left }}
           onClick={() => onStoryClick(story)}
-          title={story.title}
+          // 언어에 따라 다른 제목을 title 속성에 부여합니다.
+          title={language === 'ko' ? story.title : story.eng_title}
         >
           <span className="map-button-pulse"></span>
         </button>
