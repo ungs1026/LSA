@@ -6,18 +6,15 @@
     <title>Lost Ark Archives</title>
     <link rel="icon" href="./favicon.ico">
     
-    <!-- Primary Meta Tags -->
     <meta name="title" content="Lost Ark Archives" />
     <meta name="description" content="You can find information about Lost Ark's worldview, story, and class." />
 
-    <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://lsa-blue.vercel.app/" />
     <meta property="og:title" content="Lost Ark Archives" />
     <meta property="og:description" content="You can find information about Lost Ark's worldview, story, and class." />
     <meta property="og:image" content="./src/assets/images/card.png" />
 
-    <!-- X (Twitter) -->
     <meta property="twitter:card" content="summary_large_image" />
     <meta property="twitter:url" content="https://lsa-blue.vercel.app/" />
     <meta property="twitter:title" content="Lost Ark Archives" />
@@ -28,7 +25,6 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@400;700;800&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
     
-    <!-- CDN Libraries -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.waves.min.js"></script>
@@ -111,10 +107,33 @@
             text-decoration: none;
         }
 
+        .header-controls {
+            display: flex;
+            align-items: center;
+            gap: 15px; /* Spacing between new button and start button */
+        }
+
+        .lang-btn {
+            font-family: var(--font-title);
+            font-size: 1vw;
+            font-weight: bold;
+            color: var(--color-primary);
+            background-color: transparent;
+            padding: 10px 15px;
+            border: 1px solid var(--color-primary);
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .lang-btn:hover {
+            background-color: rgba(163, 134, 90, 0.2);
+            box-shadow: 0 0 15px rgba(163, 134, 90, 0.4);
+        }
+
         .start-btn {
             font-family: var(--font-title);
-            font-size: 1.2rem;
-            font-weight: 700;
+            font-size: 1vw;
+            font-weight: bold;
             color: var(--color-background);
             background-color: var(--color-primary);
             padding: 10px 25px;
@@ -123,6 +142,7 @@
             cursor: pointer;
             transition: all 0.3s ease;
             box-shadow: 0 0 15px rgba(163, 134, 90, 0.4);
+            transform: scale(1);    
         }
         .start-btn:hover {
             background-color: var(--color-secondary);
@@ -283,84 +303,99 @@
     <div id="landing-page">
         <header class="landing-header" id="main-header">
             <a href="#" class="logo">Lost Ark Archives</a>
-            <button class="start-btn" id="start-app-btn">START</button>
+            <div class="header-controls">
+                <button class="lang-btn" id="lang-toggle-btn" data-lang="ko">KO</button>
+                <button class="start-btn" id="start-app-btn">START</button>
+            </div>
         </header>
 
         <main>
             <section id="hero" class="section">
-                <h1 class="hero-title reveal">LOST ARK ARCHIVES</h1>
-                <p class="hero-subtitle reveal">아크라시아의 모든 역사와 이야기가 여기에 잠들어 있습니다.</p>
-                <div class="scroll-down">Scroll Down ▽</div>
+                <h1 class="hero-title reveal" data-ko="LOST ARK ARCHIVES" data-en="LOST ARK ARCHIVES">LOST ARK ARCHIVES</h1>
+                <p class="hero-subtitle reveal" data-ko="아크라시아의 모든 역사와 이야기가 여기에 잠들어 있습니다." data-en="All the history and stories of Arkesia lie here.">아크라시아의 모든 역사와 이야기가 여기에 잠들어 있습니다.</p>
+                <div class="scroll-down" data-ko="Scroll Down ▽" data-en="Scroll Down ▽">Scroll Down ▽</div>
             </section>
 
             <section id="about" class="section">
                 <div class="reveal">
-                    <h2 class="section-title">About Project</h2>
-                    <p class="section-subtitle">
+                    <h2 class="section-title" data-ko="About Project" data-en="About Project">About Project</h2>
+                    <p class="section-subtitle" 
+                        data-ko="'Lost Ark Archives'는 스마일게이트 RPG의 MMORPG '로스트아크'의 방대하고 깊이 있는 세계관을 유저들이 보다 쉽고 몰입감 있게 탐험할 수 있도록 제작된 비공식 아카이브 웹사이트입니다. 복잡하게 얽힌 스토리, 매력적인 등장인물, 그리고 장엄한 레이드의 정보를 체계적으로 정리하여 한눈에 볼 수 있도록 제공합니다."
+                        data-en="'Lost Ark Archives' is an unofficial archive website created to help users explore the vast and profound worldview of Smilegate RPG's MMORPG 'Lost Ark' more easily and immersively. It systematically organizes and provides information on complex storylines, captivating characters, and epic raids for easy viewing.">
                         'Lost Ark Archives'는 스마일게이트 RPG의 MMORPG '로스트아크'의 방대하고 깊이 있는 세계관을 유저들이 보다 쉽고 몰입감 있게 탐험할 수 있도록 제작된 비공식 아카이브 웹사이트입니다. 복잡하게 얽힌 스토리, 매력적인 등장인물, 그리고 장엄한 레이드의 정보를 체계적으로 정리하여 한눈에 볼 수 있도록 제공합니다.
                     </p>
                 </div>
             </section>
 
             <section id="architecture" class="section">
-                 <div class="reveal">
-                    <h2 class="section-title">System Architecture</h2>
-                    <p class="section-subtitle">
-                        React 기반의 SPA(Single Page Application) 구조에 Supabase를 BaaS(Backend as a Service)로 결합하여, 서버리스 환경에서 효율적인 데이터 관리와 동적인 사용자 경험을 제공합니다.
-                    </p>
-                    <img src="./src/assets/images/architecture.png" alt="System Architecture Diagram" class="diagram-img">
-                </div>
+                    <div class="reveal">
+                        <h2 class="section-title" data-ko="System Architecture" data-en="System Architecture">System Architecture</h2>
+                        <p class="section-subtitle" 
+                            data-ko="React 기반의 SPA(Single Page Application) 구조에 Supabase를 BaaS(Backend as a Service)로 결합하여, 서버리스 환경에서 효율적인 데이터 관리와 동적인 사용자 경험을 제공합니다."
+                            data-en="Combining a React-based SPA (Single Page Application) structure with Supabase as BaaS (Backend as a Service) provides efficient data management and dynamic user experience in a serverless environment.">
+                            React 기반의 SPA(Single Page Application) 구조에 Supabase를 BaaS(Backend as a Service)로 결합하여, 서버리스 환경에서 효율적인 데이터 관리와 동적인 사용자 경험을 제공합니다.
+                        </p>
+                        <img src="./src/assets/images/architecture.png" alt="System Architecture Diagram" class="diagram-img">
+                    </div>
             </section>
 
             <section id="class-diagram" class="section">
-                 <div class="reveal">
-                    <h2 class="section-title">Class Diagram</h2>
-                    <p class="section-subtitle">
-                        주요 컴포넌트 간의 관계를 시각화한 다이어그램입니다. App 컴포넌트가 중앙에서 상태를 관리하며, 각 페이지와 하위 컴포넌트들이 데이터를 전달받아 UI를 렌더링하는 구조를 보여줍니다.
-                    </p>
-                    <img src="./src/assets/images/classDiagram.png" alt="Class Diagram" class="diagram-img">
-                </div>
+                    <div class="reveal">
+                        <h2 class="section-title" data-ko="Class Diagram" data-en="Class Diagram">Class Diagram</h2>
+                        <p class="section-subtitle" 
+                            data-ko="주요 컴포넌트 간의 관계를 시각화한 다이어그램입니다. App 컴포넌트가 중앙에서 상태를 관리하며, 각 페이지와 하위 컴포넌트들이 데이터를 전달받아 UI를 렌더링하는 구조를 보여줍니다."
+                            data-en="This diagram visualizes the relationships between key components. It shows how the App component centrally manages state, and how each page and sub-component receives data to render the UI.">
+                            주요 컴포넌트 간의 관계를 시각화한 다이어그램입니다. App 컴포넌트가 중앙에서 상태를 관리하며, 각 페이지와 하위 컴포넌트들이 데이터를 전달받아 UI를 렌더링하는 구조를 보여줍니다.
+                        </p>
+                        <img src="./src/assets/images/classDiagram.png" alt="Class Diagram" class="diagram-img">
+                    </div>
             </section>
 
             <section id="features" class="section">
                 <div class="reveal">
-                    <h2 class="section-title">Key Features</h2>
-                    <p class="section-subtitle">
+                    <h2 class="section-title" data-ko="Key Features" data-en="Key Features">Key Features</h2>
+                    <p class="section-subtitle" 
+                        data-ko="로스트아크의 방대한 정보를 직관적이고 인터랙티브한 방식으로 탐색할 수 있도록 다양한 기능을 구현했습니다."
+                        data-en="We've implemented various features to allow intuitive and interactive exploration of Lost Ark's extensive information.">
                         로스트아크의 방대한 정보를 직관적이고 인터랙티브한 방식으로 탐색할 수 있도록 다양한 기능을 구현했습니다.
                     </p>
                 </div>
                 <div class="grid-container">
                     <div class="card reveal">
-                        <h3>통합 검색</h3>
-                        <p>캐릭터, 보스, 스토리 등 아카이브 내 모든 데이터를 한 번에 검색하여 원하는 정보에 빠르게 접근할 수 있습니다.</p>
+                        <h3 data-ko="통합 검색" data-en="Integrated Search">통합 검색</h3>
+                        <p data-ko="캐릭터, 보스, 스토리 등 아카이브 내 모든 데이터를 한 번에 검색하여 원하는 정보에 빠르게 접근할 수 있습니다." data-en="Quickly access desired information by searching all data within the archive, including characters, bosses, and stories, at once.">캐릭터, 보스, 스토리 등 아카이브 내 모든 데이터를 한 번에 검색하여 원하는 정보에 빠르게 접근할 수 있습니다.</p>
                     </div>
                     <div class="card reveal">
-                        <h3>Interactive UI</h3>
-                        <p>GSAP, Three.js 등을 활용한 Interaction Animation, 3D 카드, 동적 모달, 인터랙티브 맵 등 시각적 즐거움을 더하는 요소를 통해 정보 탐색의 몰입감을 높였습니다.</p>
+                        <h3 data-ko="Interactive UI" data-en="Interactive UI">Interactive UI</h3>
+                        <p data-ko="GSAP, Three.js 등을 활용한 Interaction Animation, 3D 카드, 동적 모달, 인터랙티브 맵 등 시각적 즐거움을 더하는 요소를 통해 정보 탐색의 몰입감을 높였습니다." data-en="Enhanced immersion in information exploration through elements that add visual enjoyment, such as Interaction Animation using GSAP and Three.js, 3D cards, dynamic modals, and interactive maps.">GSAP, Three.js 등을 활용한 Interaction Animation, 3D 카드, 동적 모달, 인터랙티브 맵 등 시각적 즐거움을 더하는 요소를 통해 정보 탐색의 몰입감을 높였습니다.</p>
                     </div>
                     <div class="card reveal">
-                        <h3>렌더링 방식 (CSR)</h3>
-                        <p>
+                        <h3 data-ko="렌더링 방식 (CSR)" data-en="Rendering Method (CSR)">렌더링 방식 (CSR)</h3>
+                        <p 
+                            data-ko="본 프로젝트는 React 기반의 SPA(Single Page Application)로, CSR(Client-Side Rendering) 방식을 채택했습니다. 사용자가 최초 접속 시 브라우저는 최소한의 HTML과 JavaScript를 다운로드하고, 이후 React가 동적으로 페이지를 렌더링합니다. 이 방식은 초기 로딩 후에는 서버 요청 없이 부드러운 페이지 전환이 가능해 네이티브 앱과 유사한 사용자 경험을 제공합니다."
+                            data-en="This project is a React-based SPA (Single Page Application) adopting the CSR (Client-Side Rendering) method. When a user first accesses the site, the browser downloads minimal HTML and JavaScript, and then React dynamically renders the page. This approach allows for smooth page transitions without server requests after the initial load, providing a user experience similar to native apps.">
                             본 프로젝트는 React 기반의 SPA(Single Page Application)로, CSR(Client-Side Rendering) 방식을 채택했습니다. 사용자가 최초 접속 시 브라우저는 최소한의 HTML과 JavaScript를 다운로드하고, 이후 React가 동적으로 페이지를 렌더링합니다. 이 방식은 초기 로딩 후에는 서버 요청 없이 부드러운 페이지 전환이 가능해 네이티브 앱과 유사한 사용자 경험을 제공합니다.
                         </p>
                     </div>
                     <div class="card reveal">
-                        <h3>커뮤니티 기능</h3>
-                        <p>Supabase를 연동한 건의 게시판을 통해 사용자들이 사이트 개선에 대한 의견을 남기고 소통할 수 있는 창구를 마련했습니다.</p>
+                        <h3 data-ko="커뮤니티 기능" data-en="Community Features">커뮤니티 기능</h3>
+                        <p data-ko="Supabase를 연동한 건의 게시판을 통해 사용자들이 사이트 개선에 대한 의견을 남기고 소통할 수 있는 창구를 마련했습니다." data-en="A suggestion board linked with Supabase has been set up to provide a channel for users to leave feedback and communicate about site improvements.">Supabase를 연동한 건의 게시판을 통해 사용자들이 사이트 개선에 대한 의견을 남기고 소통할 수 있는 창구를 마련했습니다.</p>
                     </div>
                 </div>
             </section>
 
             <section id="tech-stack" class="section">
                 <div class="reveal">
-                    <h2 class="section-title">Tech Stack</h2>
-                    <p class="section-subtitle">
+                    <h2 class="section-title" data-ko="Tech Stack" data-en="Tech Stack">Tech Stack</h2>
+                    <p class="section-subtitle" 
+                        data-ko="최신 웹 기술을 적극적으로 활용하여 동적이고 반응성이 뛰어난 사용자 경험을 구현했습니다."
+                        data-en="We actively utilized the latest web technologies to implement a dynamic and highly responsive user experience.">
                         최신 웹 기술을 적극적으로 활용하여 동적이고 반응성이 뛰어난 사용자 경험을 구현했습니다.
                     </p>
                 </div>
                 <div class="grid-container">
                     <div class="card reveal">
-                        <h3>Front-End</h3>
+                        <h3 data-ko="Front-End" data-en="Front-End">Front-End</h3>
                         <ul class="tech-stack-grid">
                             <li class="tech-item">React</li>
                             <li class="tech-item">JavaScript (ES6+)</li>
@@ -368,14 +403,14 @@
                         </ul>
                     </div>
                     <div class="card reveal">
-                        <h3>Back-End</h3>
+                        <h3 data-ko="Back-End" data-en="Back-End">Back-End</h3>
                         <ul class="tech-stack-grid">
                             <li class="tech-item">Supabase</li>
                         </ul>
                     </div>
                     <div class="card reveal">
-                        <h3>Libraries</h3>
-                         <ul class="tech-stack-grid">
+                        <h3 data-ko="Libraries" data-en="Libraries">Libraries</h3>
+                        <ul class="tech-stack-grid">
                             <li class="tech-item">GSAP</li>
                             <li class="tech-item">Three.js</li>
                             <li class="tech-item">Swiper.js</li>
@@ -389,21 +424,27 @@
 
             <section id="differentiation" class="section">
                 <div class="reveal">
-                    <h2 class="section-title">Differentiation</h2>
-                     <p class="section-subtitle">
+                    <h2 class="section-title" data-ko="Differentiation" data-en="Differentiation">Differentiation</h2>
+                    <p class="section-subtitle" 
+                        data-ko="공식 홈페이지와 차별화되는 지점과 이 프로젝트만의 독창적인 가치를 소개합니다."
+                        data-en="Introducing key differentiators from the official website and the unique value of this project.">
                         공식 홈페이지와 차별화되는 지점과 이 프로젝트만의 독창적인 가치를 소개합니다.
                     </p>
                 </div>
                 <div class="grid-container">
                     <div class="card reveal">
-                        <h3>공식 사이트와의 비교</h3>
-                        <p>
-                           로스트아크 공식 홈페이지는 게임 소식, 이벤트, 가이드 등 포괄적인 정보를 제공하는 '포털'의 역할을 합니다. 반면, 본 '아카이브'는 방대한 정보 중 '스토리'에 집중하여, 분산된 정보를 한곳에 모아 체계적으로 제공함으로써 Lore-Friendly한 경험을 선사하는 데 목적이 있습니다.
+                        <h3 data-ko="공식 사이트와의 비교" data-en="Comparison with Official Site">공식 사이트와의 비교</h3>
+                        <p 
+                            data-ko="로스트아크 공식 홈페이지는 게임 소식, 이벤트, 가이드 등 포괄적인 정보를 제공하는 '포털'의 역할을 합니다. 반면, 본 '아카이브'는 방대한 정보 중 '스토리'에 집중하여, 분산된 정보를 한곳에 모아 체계적으로 제공함으로써 Lore-Friendly한 경험을 선사하는 데 목적이 있습니다."
+                            data-en="The official Lost Ark website serves as a 'portal' providing comprehensive information like game news, events, and guides. In contrast, this 'Archive' focuses on 'story' among the vast information, aiming to provide a Lore-Friendly experience by systematically collecting dispersed information in one place.">
+                            로스트아크 공식 홈페이지는 게임 소식, 이벤트, 가이드 등 포괄적인 정보를 제공하는 '포털'의 역할을 합니다. 반면, 본 '아카이브'는 방대한 정보 중 '스토리'에 집중하여, 분산된 정보를 한곳에 모아 체계적으로 제공함으로써 Lore-Friendly한 경험을 선사하는 데 목적이 있습니다.
                         </p>
                     </div>
                     <div class="card reveal">
-                        <h3>프로젝트의 독창성</h3>
-                        <p>
+                        <h3 data-ko="프로젝트의 독창성" data-en="Project Originality">프로젝트의 독창성</h3>
+                        <p 
+                            data-ko="단순 정보 나열을 넘어, 3D 카드, 인터랙티브 맵, 동적 애니메이션, 게임에서 제공하는 UI 등 게임의 분위기를 웹에서 느낄 수 있도록 시각적, Interactive 요소를 강화했습니다. 이는 정보의 전달력을 높이고 사용자의 몰입감을 극대화하는 핵심적인 차별점입니다."
+                            data-en="Beyond simple information listing, we enhanced visual and interactive elements like 3D cards, interactive maps, dynamic animations, and in-game UI to recreate the game's atmosphere on the web. This is a key differentiator that boosts information delivery and maximizes user immersion.">
                             단순 정보 나열을 넘어, 3D 카드, 인터랙티브 맵, 동적 애니메이션, 게임에서 제공하는 UI 등 게임의 분위기를 웹에서 느낄 수 있도록 시각적, Interactive 요소를 강화했습니다. 이는 정보의 전달력을 높이고 사용자의 몰입감을 극대화하는 핵심적인 차별점입니다.
                         </p>
                     </div>
@@ -476,6 +517,36 @@
                     root.style.display = 'block';
                 }, { once: true });
             });
+
+            // --- Language Translation Logic ---
+            const langToggleBtn = document.getElementById('lang-toggle-btn');
+            const translatableElements = document.querySelectorAll('[data-ko]');
+
+            function setLanguage(lang) {
+                translatableElements.forEach(el => {
+                    if (el.dataset[lang]) {
+                        if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
+                            el.placeholder = el.dataset[lang];
+                        } else {
+                            el.textContent = el.dataset[lang];
+                        }
+                    }
+                });
+                langToggleBtn.textContent = lang.toUpperCase();
+                langToggleBtn.dataset.lang = lang;
+                document.documentElement.lang = lang; // Update html lang attribute
+            }
+
+            // Initialize language based on default or saved preference
+            const initialLang = langToggleBtn.dataset.lang || 'ko';
+            setLanguage(initialLang);
+
+            langToggleBtn.addEventListener('click', () => {
+                let currentLang = langToggleBtn.dataset.lang;
+                let newLang = currentLang === 'ko' ? 'en' : 'ko';
+                setLanguage(newLang);
+            });
+            // --- End Language Translation Logic ---
         });
     </script>
 </body>
