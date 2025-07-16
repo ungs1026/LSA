@@ -2,7 +2,7 @@
 import React, { createContext, useState } from 'react';
 
 export const LanguageContext = createContext({
-  language: 'en',
+  language: 'ko',
   setLanguage: () => {}
 });
 

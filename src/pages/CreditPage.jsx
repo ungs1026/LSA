@@ -119,7 +119,7 @@ const InfoWindow = ({ modal, onClose, onDragStart, zIndex }) => {
 };
 
 const CreditPage = () => {
-  const [language, setLanguage] = useState("en");
+  const [language, setLanguage] = useState("ko");
   const mountRef = useRef(null);
   const [currentTime, setCurrentTime] = useState(new Date());
   

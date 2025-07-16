@@ -21,7 +21,7 @@ const ClassPage = ({ initialData }) => {
   const [selectedClass, setSelectedClass] = useState(classData[0]);
   const [animationKey, setAnimationKey] = useState(0);
   const [isMobileView, setIsMobileView] = useState(window.innerWidth <= 1024);
-  const [lang, setLang] = useState('EN'); // 'ko' or 'en'
+  const [lang, setLang] = useState('KO'); // 'ko' or 'en'
 
   useEffect(() => {
     const handleResize = () => setIsMobileView(window.innerWidth <= 1024);

@@ -304,7 +304,7 @@
         <header class="landing-header" id="main-header">
             <a href="#" class="logo">Lost Ark Archives</a>
             <div class="header-controls">
-                <button class="lang-btn" id="lang-toggle-btn" data-lang="en">EN</button>
+                <button class="lang-btn" id="lang-toggle-btn" data-lang="ko">ko</button>
                 <button class="start-btn" id="start-app-btn">START</button>
             </div>
         </header>
@@ -520,7 +520,7 @@
 
             // --- Language Translation Logic ---
             const langToggleBtn = document.getElementById('lang-toggle-btn');
-            const translatableElements = document.querySelectorAll('[data-en]');
+            const translatableElements = document.querySelectorAll('[data-ko]');
 
             function setLanguage(lang) {
                 translatableElements.forEach(el => {
@@ -538,7 +538,7 @@
             }
 
             // Initialize language based on default or saved preference
-            const initialLang = langToggleBtn.dataset.lang || 'en';
+            const initialLang = langToggleBtn.dataset.lang || 'ko';
             setLanguage(initialLang);
 
             langToggleBtn.addEventListener('click', () => {

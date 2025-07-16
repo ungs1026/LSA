@@ -7,7 +7,7 @@ const CharactersPage = ({ initialData }) => {
   const [activeTab, setActiveTab] = useState('current-esthers');
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedChar, setSelectedChar] = useState(null);
-  const [language, setLanguage] = useState('en');
+  const [language, setLanguage] = useState('ko');
 
   useEffect(() => {
     if (initialData && initialData.type === 'character') {
