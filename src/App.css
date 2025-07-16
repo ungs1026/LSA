@@ -332,7 +332,7 @@ body {
   height: 34px;
 }
 .search-bar-input::placeholder {
-  color: var(--color-secondary);
+  color: #bda2799e;
 }
 .search-bar-icon {
   display: flex;

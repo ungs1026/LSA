@@ -12,7 +12,7 @@ const SearchBar = ({ query, onQueryChange, onSearch }) => {
       <input
         type="text"
         className="search-bar-input"
-        placeholder="캐릭터, 보스, 스토리 등 검색"
+        placeholder="Search for characters, bosses, stories, etc"
         value={query}
         onChange={onQueryChange}
         onKeyDown={handleKeyDown}

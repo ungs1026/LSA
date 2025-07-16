@@ -14,9 +14,7 @@ import LoadingScreen from './components/LoadingScreen';
 import SuggestPage from './pages/SuggestPage';
 import CreditPage from './pages/CreditPage';
 
-
 import backIcon from './assets/images/back.svg';
-
 
 const App = () => {
   const [currentMenuIndex, setCurrentMenuIndex] = useState(0);
@@ -65,12 +63,22 @@ const App = () => {
       ...commanders.map(item => ({ ...item, source: 'commanders', page: 'characters', type: 'character' })),
       ...bossRaids.filter(item => item.patterns).map(item => ({ ...item, source: 'bossRaids', page: 'boss', type: 'boss' })),
       ...arksData.map(item => ({ ...item, source: 'arksData', page: 'ark', type: 'ark' })),
-      ...stories.map(item => ({ ...item, name: item.title, source: 'stories', page: item.category === 'worldview' ? 'worldview' : 'continents', type: 'story' }))
+      ...stories.map(item => ({
+        ...item,
+        name: item.title || item.eng_title,
+        source: 'stories',
+        page: item.category === 'worldview' ? 'worldview' : 'continents',
+        type: 'story'
+      }))
     ];
     
-    const uniqueData = Array.from(new Set(allData.map(item => JSON.stringify({name: item.name, source: item.source}))))
+    const uniqueData = Array.from(
+      new Set(allData.map(item => JSON.stringify({ name: item.name, source: item.source })))
+    )
       .map(str => JSON.parse(str))
-      .map(uniqueItem => allData.find(item => item.name === uniqueItem.name && item.source === uniqueItem.source));
+      .map(uniqueItem =>
+        allData.find(item => item.name === uniqueItem.name && item.source === uniqueItem.source)
+      );
       
     setSearchIndex(uniqueData);
   }, []);
@@ -104,11 +112,21 @@ const App = () => {
   const handleQueryChange = (e) => {
     const query = e.target.value;
     setSearchQuery(query);
+
     if (query.length > 0) {
-      const results = searchIndex.filter(item =>
-        item.name.toLowerCase().includes(query.toLowerCase()) || 
-        (item.id && item.id.toLowerCase().includes(query.toLowerCase()))
-      );
+      const lower = query.toLowerCase();
+      const results = searchIndex.filter(item => {
+        return (
+          // 한글·한국어 이름 검색
+          (item.name && item.name.toLowerCase().includes(lower)) ||
+          // 영어 제목 검색 (stories)
+          (item.eng_title && item.eng_title.toLowerCase().includes(lower)) ||
+          // 영어 이름 필드 (일부 데이터 구조)
+          (item.name_en && item.name_en.toLowerCase().includes(lower)) ||
+          // ID 검색
+          (item.id && item.id.toLowerCase().includes(lower))
+        );
+      });
       setSearchResults(results.slice(0, 10));
     } else {
       setSearchResults([]);
@@ -158,8 +176,18 @@ const App = () => {
           <div className="main-content-wrapper">
             <h1 id="home-title">Lost Ark Archives</h1>
             <div className="search-container">
-              <SearchBar query={searchQuery} onQueryChange={handleQueryChange} onSearch={() => { if(searchResults.length > 0) handleResultClick(searchResults[0]) }} />
-              <SearchResults query={searchQuery} results={searchResults} onResultClick={handleResultClick} />
+              <SearchBar
+                query={searchQuery}
+                onQueryChange={handleQueryChange}
+                onSearch={() => {
+                  if (searchResults.length > 0) handleResultClick(searchResults[0]);
+                }}
+              />
+              <SearchResults
+                query={searchQuery}
+                results={searchResults}
+                onResultClick={handleResultClick}
+              />
             </div>
           </div>
           <MainMenu
@@ -172,7 +200,7 @@ const App = () => {
       ) : (
         <div className="page-wrapper">
           <button className="return-btn" onClick={handleReturnToMain}>
-            <img src={backIcon} alt="backIcon" className='return_icon_img' />
+            <img src={backIcon} alt="backIcon" className="return_icon_img" />
           </button>
           {renderPageContent()}
         </div>

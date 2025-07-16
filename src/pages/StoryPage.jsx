@@ -3,34 +3,31 @@ import { stories } from '../data/db';
 import StoryModal from '../components/StoryModal';
 import { gsap } from 'gsap';
 import map from '../assets/images/map.png';
-import travelerIcon from '../assets/images/traveler.png'; // 움직이는 객체 이미지 import
+import travelerIcon from '../assets/images/traveler.png';
 import { MotionPathPlugin } from 'gsap/MotionPathPlugin';
 import { LanguageContext } from '../contexts/LanguageContext';
 
 gsap.registerPlugin(MotionPathPlugin);
 
-const StoryList = ({ stories, onStoryClick }) => {
-  // 언어 컨텍스트를 사용하여 현재 언어를 가져옵니다.
-  const { language } = useContext(LanguageContext);
-  return (
-    <div id="story-list">
-      {stories.map((story, index) => (
-        <div key={index} className="story-title-item" onClick={() => onStoryClick(story)}>
-          {/* 언어에 따라 다른 제목을 표시합니다. */}
-          {language === 'ko' ? story.title : story.eng_title}
-        </div>
-      ))}
-    </div>
-  );
-};
+const StoryList = ({ stories, onStoryClick, language }) => (
+  <div id="story-list">
+    {stories.map((story, index) => (
+      <div
+        key={index}
+        className="story-title-item"
+        onClick={() => onStoryClick(story)}
+      >
+        {language === 'ko' ? story.title : story.eng_title}
+      </div>
+    ))}
+  </div>
+);
 
-const InteractiveMap = ({ stories, onStoryClick }) => {
+const InteractiveMap = ({ stories, onStoryClick, language }) => {
   const pathRef = useRef(null);
   const travelerRef = useRef(null);
   const mapWidth = 1200;
   const mapHeight = 662;
-  // 언어 컨텍스트를 사용하여 현재 언어를 가져옵니다.
-  const { language } = useContext(LanguageContext);
 
   const pathData = useMemo(() => {
     if (stories.length === 0) return '';
@@ -49,12 +46,11 @@ const InteractiveMap = ({ stories, onStoryClick }) => {
     const traveler = travelerRef.current;
     if (!path || !traveler || path.getTotalLength() === 0) return;
 
-    // 2. 객체가 경로를 따라 움직이는 애니메이션만 남김
     const motionAnimation = gsap.to(traveler, {
       motionPath: {
         path: path,
         align: path,
-        alignOrigin: [0.5, 0.5], // 이미지의 중앙을 경로에 맞춤
+        alignOrigin: [0.5, 0.5],
         autoRotate: true,
       },
       duration: 40,
@@ -63,21 +59,14 @@ const InteractiveMap = ({ stories, onStoryClick }) => {
       delay: 2
     });
 
-    return () => {
-      motionAnimation.kill();
-    }
+    return () => motionAnimation.kill();
   }, [pathData]);
 
   return (
     <div className="story-map-container">
       <img src={map} alt="World Map" className="story-map-image" />
       <svg className="story-map-svg" viewBox={`0 0 ${mapWidth} ${mapHeight}`}>
-        <path
-          ref={pathRef}
-          d={pathData}
-          className="story-map-path"
-        />
-        {/* 움직이는 객체를 circle에서 image로 변경 */}
+        <path ref={pathRef} d={pathData} className="story-map-path" />
         <image
           ref={travelerRef}
           href={travelerIcon}
@@ -86,38 +75,35 @@ const InteractiveMap = ({ stories, onStoryClick }) => {
           className="story-map-traveler"
         />
       </svg>
-      {stories.map((story, index) => (
-        story.coords &&
-        <button
-          key={index}
-          className="map-button"
-          style={{ top: story.coords.top, left: story.coords.left }}
-          onClick={() => onStoryClick(story)}
-          // 언어에 따라 다른 제목을 title 속성에 부여합니다.
-          title={language === 'ko' ? story.title : story.eng_title}
-        >
-          <span className="map-button-pulse"></span>
-        </button>
-      ))}
+      {stories.map((story, index) =>
+        story.coords && (
+          <button
+            key={index}
+            className="map-button"
+            style={{ top: story.coords.top, left: story.coords.left }}
+            onClick={() => onStoryClick(story)}
+            title={language === 'ko' ? story.title : story.eng_title}
+          >
+            <span className="map-button-pulse"></span>
+          </button>
+        )
+      )}
     </div>
   );
 };
 
 const StoryPage = ({ pageType, title, initialData }) => {
+  // Context에서 언어와 토글 함수 사용
+  const { language, toggleLanguage } = useContext(LanguageContext);
+  const isEn = language === 'en';
+
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedStory, setSelectedStory] = useState(null);
-  const { language } = useContext(LanguageContext);
   const [isDesktopView, setIsDesktopView] = useState(window.innerWidth > 1024);
 
   useEffect(() => {
-    if (isModalOpen) {
-      document.body.classList.add('body-modal-open');
-    } else {
-      document.body.classList.remove('body-modal-open');
-    }
-    return () => {
-      document.body.classList.remove('body-modal-open');
-    };
+    document.body.classList.toggle('body-modal-open', isModalOpen);
+    return () => document.body.classList.remove('body-modal-open');
   }, [isModalOpen]);
 
   useEffect(() => {
@@ -132,7 +118,7 @@ const StoryPage = ({ pageType, title, initialData }) => {
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
-  const openModal = (story) => {
+  const openModal = story => {
     setSelectedStory(story);
     setIsModalOpen(true);
   };
@@ -141,17 +127,39 @@ const StoryPage = ({ pageType, title, initialData }) => {
     setSelectedStory(null);
   };
 
-  const filteredStories = stories.filter(story => story.category === pageType);
+  const filteredStories = stories.filter(s => s.category === pageType);
 
   return (
     <div className="page-content">
-      <h1 className="page-title">{title}</h1>
+      <h1 className="page-title">{isEn ? title : title}</h1>
+
       {pageType === 'continent' && isDesktopView ? (
-        <InteractiveMap stories={filteredStories} onStoryClick={openModal} />
+        <InteractiveMap
+          stories={filteredStories}
+          onStoryClick={openModal}
+          language={language}
+        />
       ) : (
-        <StoryList stories={filteredStories} onStoryClick={openModal} />
+        <StoryList
+          stories={filteredStories}
+          onStoryClick={openModal}
+          language={language}
+        />
       )}
-      <StoryModal story={selectedStory} isOpen={isModalOpen} onClose={closeModal} />
+
+      <StoryModal
+        story={selectedStory}
+        isOpen={isModalOpen}
+        onClose={closeModal}
+        lang={language === 'ko' ? 'KO' : 'EN'}
+      />
+
+      <button
+        className="language-toggle-button"
+        onClick={toggleLanguage}
+      >
+        {isEn ? 'EN' : 'KO'}
+      </button>
     </div>
   );
 };

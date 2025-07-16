@@ -1,8 +1,13 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useContext } from 'react';
 import { stories } from '../data/db';
 import StoryModal from '../components/StoryModal';
+import { LanguageContext } from '../contexts/LanguageContext'; // LanguageContext import
 
 const WorldviewPage = () => {
+  // Context에서 초기 언어를 받아 로컬 state로 관리
+  const { language: ctxLang } = useContext(LanguageContext);
+  const [lang, setLang] = useState(ctxLang.toUpperCase()); // 'KO' or 'EN'
+
   const [worldviewStories, setWorldviewStories] = useState([]);
   const [selectedStory, setSelectedStory] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -11,6 +16,9 @@ const WorldviewPage = () => {
   const [lineTop, setLineTop] = useState(-10);
   const isHoveringButtonRef = useRef(false);
 
+  // 언어 토글 함수
+  const toggleLanguage = () => setLang(prev => (prev === 'KO' ? 'EN' : 'KO'));
+
   // --- 신규 추가: 모달 상태에 따른 body 스크롤 제어 ---
   useEffect(() => {
     if (isModalOpen) {
@@ -18,7 +26,6 @@ const WorldviewPage = () => {
     } else {
       document.body.classList.remove('body-modal-open');
     }
-    // 컴포넌트 언마운트 시 클래스 제거
     return () => {
       document.body.classList.remove('body-modal-open');
     };
@@ -83,25 +90,33 @@ const WorldviewPage = () => {
         <div className="worldview-content-wrapper">
           <div className="worldview-selected-title-container">
             {selectedStory && (
-              <h2 className="worldview-selected-title">{selectedStory.title}</h2>
+              // lang에 따라 제목 분기
+              <h2 className="worldview-selected-title">
+                {lang === 'KO' ? selectedStory.title : selectedStory.eng_title}
+              </h2>
             )}
           </div>
           <div className="worldview-menu">
             {worldviewStories.map((story, index) => (
               <button
                 key={index}
-                className={`worldview-item ${selectedStory && selectedStory.title === story.title ? 'active' : ''}`}
+                className={`worldview-item ${selectedStory && (lang === 'KO' ? selectedStory.title === story.title : selectedStory.eng_title === story.eng_title) ? 'active' : ''}`}
                 onMouseEnter={(e) => handleStoryHover(e, story)}
                 onMouseLeave={handleStoryLeave}
                 onClick={() => handleStoryClick(story)}
               >
-                {story.title}
+                {lang === 'KO' ? story.title : story.eng_title}
               </button>
             ))}
           </div>
         </div>
       </div>
-      <StoryModal story={modalContent} isOpen={isModalOpen} onClose={closeModal} />
+      <StoryModal story={modalContent} isOpen={isModalOpen} onClose={closeModal} lang={lang} />
+
+      {/* 우측 하단 언어 토글 버튼 */}
+      <button className="language-toggle-button" onClick={toggleLanguage}>
+        {lang}
+      </button>
     </div>
   );
 };

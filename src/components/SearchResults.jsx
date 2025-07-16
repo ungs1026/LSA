@@ -11,33 +11,44 @@ const SearchResults = ({ query, results, onResultClick }) => {
     return (
       <ul className="search-results-list">
         <li className="no-result-item">
-          '{query}'와(과) 관련된 내용이 존재하지 않습니다.
+          '{query}' content does not exist.
         </li>
       </ul>
     );
   }
 
+  // query에 영문 키워드가 포함되어 있으면 영어로 출력
+  const isEnglishQuery = /[A-Za-z]/.test(query);
+
   const sourceMap = {
-    'allEsthersData': '에스더',
-    'commanders': '군단장',
-    'bossRaids': '보스 레이드',
-    'arksData': '아크',
-    'stories': '스토리',
-    'classDB': '클래스',
+    'allEsthersData': 'Esther',
+    'commanders': 'Boss',
+    'bossRaids': 'Boss Raid',
+    'arksData': 'ark',
+    'stories': 'story',
+    'classDB': 'class',
   };
 
   return (
     <ul className="search-results-list">
-      {results.map((result, index) => (
-        <li
-          key={`${result.name}-${index}`}
-          className="result-item"
-          onClick={() => onResultClick(result)}
-        >
-          <span className="result-name">{result.name} <span>(  {result.id || ''}  )</span></span>
-          <span className="result-source">{sourceMap[result.source] || result.source}</span>
-        </li>
-      ))}
+      {results.map((result, index) => {
+        // displayName: 영어 쿼리일 때 영어 필드 있으면 영어로
+        const displayName = isEnglishQuery
+          ? (result.eng_title || result.name_en || result.name)
+          : result.name;
+        return (
+          <li
+            key={`${result.name}-${index}`}
+            className="result-item"
+            onClick={() => onResultClick(result)}
+          >
+            <span className="result-name">
+              {displayName} <span>({result.id || ''})</span>
+            </span>
+            <span className="result-source">{sourceMap[result.source] || result.source}</span>
+          </li>
+        );
+      })}
     </ul>
   );
 };
