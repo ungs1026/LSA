@@ -7,7 +7,7 @@ import BossModal from '../components/BossModal';
 const BossPage = ({ initialData }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedBoss, setSelectedBoss] = useState(null);
-  const [language, setLanguage] = useState('ko');
+  const [language, setLanguage] = useState('en');
 
   useEffect(() => {
     if (initialData && initialData.type === 'boss') {

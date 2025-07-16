@@ -5,7 +5,7 @@ import { arksData } from '../data/db';
 
 const ArkPage = ({ initialData }) => {
   const [selectedArk, setSelectedArk] = useState(arksData[0]);
-  const [language, setLanguage] = useState('ko');
+  const [language, setLanguage] = useState('en');
 
   useEffect(() => {
     if (initialData && initialData.type === 'ark') {
