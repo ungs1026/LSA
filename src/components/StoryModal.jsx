@@ -1,66 +1,56 @@
-import React, { useState, useRef, useEffect, useLayoutEffect, useContext } from 'react';
+import React, { useState, useRef, useEffect, useLayoutEffect } from 'react';
 import { gsap } from 'gsap';
 import { TextPlugin } from 'gsap/TextPlugin';
-import { LanguageContext } from '../contexts/LanguageContext'; // LanguageContext import
+
+// 이해: LanguageContext 대신 상위에서 전달된 lang prop 사용
 
 gsap.registerPlugin(TextPlugin);
 
-const StoryModal = ({ story, isOpen, onClose }) => {
-  const modalContentRef = useRef(null); // 모달 콘텐츠 영역의 ref
+const StoryModal = ({ story, isOpen, onClose, lang }) => {
+  const modalContentRef = useRef(null); // 모달 콘텐츠 영역 ref
   const animationRef = useRef(null);
-  const [isScrolled, setIsScrolled] = useState(false); // 스크롤 상태를 관리하는 state
-  const { language } = useContext(LanguageContext); // 언어 컨텍스트 사용
+  const [isScrolled, setIsScrolled] = useState(false);
 
-  // 스크롤 이벤트 핸들러 추가
+  // 모달 스크롤 상태 관리
   useEffect(() => {
     const modalEl = modalContentRef.current;
     if (!modalEl) return;
 
-    const handleScroll = () => {
-      // 스크롤 위치가 10px보다 크면 isScrolled를 true로 설정
-      setIsScrolled(modalEl.scrollTop > 10);
-    };
+    const handleScroll = () => setIsScrolled(modalEl.scrollTop > 10);
 
-    // 모달이 열려있을 때만 스크롤 이벤트 리스너 추가
-    if (isOpen) {
-      modalEl.addEventListener('scroll', handleScroll);
-    }
+    if (isOpen) modalEl.addEventListener('scroll', handleScroll);
 
-    // 컴포넌트 정리 시 이벤트 리스너 제거
     return () => {
-      if (modalEl) {
-        modalEl.removeEventListener('scroll', handleScroll);
-      }
+      if (modalEl) modalEl.removeEventListener('scroll', handleScroll);
     };
-  }, [isOpen]); // isOpen 상태가 변경될 때마다 이펙트 실행
+  }, [isOpen]);
 
+  // 타이핑 애니메이션 초기화 및 실행
   useLayoutEffect(() => {
-    if (animationRef.current) {
-      animationRef.current.kill();
-    }
-    
-    // 모달이 열리거나 스토리가 변경되면 스크롤 상태와 위치를 초기화
-    setIsScrolled(false); 
-    if (modalContentRef.current) {
-      modalContentRef.current.scrollTop = 0;
-    }
+    if (animationRef.current) animationRef.current.kill();
 
-    if (isOpen && story && (story.title.includes('서론') || story.title.includes('결론'))) {
+    setIsScrolled(false);
+    if (modalContentRef.current) modalContentRef.current.scrollTop = 0;
+
+    // 서론/결론인 경우에만 텍스트 애니메이션
+    if (
+      isOpen &&
+      story &&
+      (story.title.includes('서론') || story.title.includes('결론'))
+    ) {
       const paragraphs = modalContentRef.current.querySelectorAll('.story-paragraph');
       if (paragraphs.length > 0) {
-        paragraphs.forEach(p => { p.textContent = ''; });
-        
-        // 언어에 따라 컨텐츠 선택
-        const content = language === 'ko' ? story.content : story.eng_content;
+        paragraphs.forEach(p => (p.textContent = ''));
 
+        const content = lang === 'KO' ? story.content : story.eng_content;
         const tl = gsap.timeline();
-        paragraphs.forEach((p, index) => {
-          // 선택된 언어의 컨텐츠로 애니메이션 적용
-          const originalText = content.split('\n\n')[index];
-          if (originalText) {
+
+        paragraphs.forEach((p, idx) => {
+          const text = content.split('\n\n')[idx];
+          if (text) {
             tl.to(p, {
-              duration: originalText.length * 0.05,
-              text: originalText,
+              duration: text.length * 0.05,
+              text,
               ease: 'none',
             });
           }
@@ -70,11 +60,9 @@ const StoryModal = ({ story, isOpen, onClose }) => {
     }
 
     return () => {
-      if (animationRef.current) {
-        animationRef.current.kill();
-      }
+      if (animationRef.current) animationRef.current.kill();
     };
-  }, [isOpen, story, language]); // language를 의존성 배열에 추가
+  }, [isOpen, story, lang]);
 
   const handleAnimationSkip = () => {
     if (animationRef.current && animationRef.current.isActive()) {
@@ -82,21 +70,19 @@ const StoryModal = ({ story, isOpen, onClose }) => {
     }
   };
 
-  if (!isOpen || !story) {
-    return null;
-  }
+  if (!isOpen || !story) return null;
 
-  // 언어에 따라 본문 내용 선택
-  const content = language === 'ko' ? story.content : story.eng_content;
+  // lang prop 기준 본문 분기
+  const content = lang === 'KO' ? story.content : story.eng_content;
   const paragraphs = content.split('\n\n');
   const images = story.images || [];
 
-  const handleImageError = (e) => {
+  const handleImageError = e => {
     e.target.onerror = null;
     e.target.style.display = 'none';
   };
 
-  const handleModalContentClick = (e) => {
+  const handleModalContentClick = e => {
     e.stopPropagation();
     handleAnimationSkip();
   };
@@ -105,19 +91,19 @@ const StoryModal = ({ story, isOpen, onClose }) => {
     <div className="modal-overlay active" onClick={onClose}>
       <div className="modal-content" onClick={handleModalContentClick} ref={modalContentRef}>
         <span className={`modal-close-btn ${isScrolled ? 'scrolled' : ''}`} onClick={onClose}>&times;</span>
-        {/* 언어에 따라 제목 선택 */}
-        <h2 id="modal-title">{language === 'ko' ? story.title : story.eng_title}</h2>
+        {/* lang prop에 따른 제목 */}
+        <h2 id="modal-title">{lang === 'KO' ? story.title : story.eng_title}</h2>
         <div id="modal-body">
-          {paragraphs.map((paragraph, index) => (
-            <React.Fragment key={index}>
+          {paragraphs.map((para, idx) => (
+            <React.Fragment key={idx}>
               <p className="story-paragraph">
-                {/* 애니메이션 대상이 아닐 경우에만 텍스트를 직접 렌더링 */}
-                {!(story.title.includes('서론') || story.title.includes('결론')) ? paragraph : ''}
+                {/* 서론/결론이 아니면 바로 렌더링 */}
+                {!(story.title.includes('서론') || story.title.includes('결론')) ? para : ''}
               </p>
-              {images[index] && (
+              {images[idx] && (
                 <img
-                  src={images[index]}
-                  alt={`Story illustration ${index + 1}`}
+                  src={images[idx]}
+                  alt={`Story illustration ${idx + 1}`}
                   className="story-image"
                   onError={handleImageError}
                 />
