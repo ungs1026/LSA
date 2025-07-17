@@ -43,7 +43,7 @@ const SearchResults = ({ query, results, onResultClick }) => {
             onClick={() => onResultClick(result)}
           >
             <span className="result-name">
-              {displayName} <span>({result.id || ''})</span>
+              {displayName} <span>( {result.eng_name == 'Lutheran' ? 'Silian Dad' : result.id || result.eng_name }  )</span>
             </span>
             <span className="result-source">{sourceMap[result.source] || result.source}</span>
           </li>
