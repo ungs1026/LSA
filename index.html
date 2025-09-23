@@ -190,6 +190,7 @@
 
         #hero {
             justify-content: center;
+            position: relative;
         }
         .hero-title {
             font-family: var(--font-title);
@@ -294,6 +295,13 @@
             height: 100%;
             z-index: 200;
         }
+
+        #scroll-to-top-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 1000;
+        }
     </style>
 </head>
 <body>
@@ -305,7 +313,7 @@
             <a href="#" class="logo">Lost Ark Archives</a>
             <div class="header-controls">
                 <button class="lang-btn" id="lang-toggle-btn" data-lang="ko">ko</button>
-                <button class="start-btn" id="start-app-btn">START</button>
+                <button class="start-btn start-app-trigger" id="start-app-btn">START</button>
             </div>
         </header>
 
@@ -313,7 +321,8 @@
             <section id="hero" class="section">
                 <h1 class="hero-title reveal" data-ko="LOST ARK ARCHIVES" data-en="LOST ARK ARCHIVES">LOST ARK ARCHIVES</h1>
                 <p class="hero-subtitle reveal" data-ko="아크라시아의 모든 역사와 이야기가 여기에 잠들어 있습니다." data-en="All the history and stories of Arkesia lie here.">아크라시아의 모든 역사와 이야기가 여기에 잠들어 있습니다.</p>
-                <div class="scroll-down" data-ko="Scroll Down ▽" data-en="Scroll Down ▽">Scroll Down ▽</div>
+                <button class="start-btn start-app-trigger reveal" style="margin-top: 40px;" data-ko="바로 시작하기" data-en="START NOW">바로 시작하기</button>
+                <div class="scroll-down" id="scroll-down" data-ko="Scroll Down ▽" data-en="Scroll Down ▽">Scroll Down ▽</div>
             </section>
 
             <section id="about" class="section">
@@ -485,7 +494,7 @@
                 }
             });
 
-            document.getElementById('start-app-btn').addEventListener('click', () => {
+            const startAppHandler = () => {
                 const landingPage = document.getElementById('landing-page');
                 const vantaBg = document.getElementById('vanta-bg');
                 const root = document.getElementById('root');
@@ -504,6 +513,10 @@
                     landingPage.style.display = 'none';
                     root.style.display = 'block';
                 }, { once: true });
+            };
+
+            document.querySelectorAll('.start-app-trigger').forEach(button => {
+                button.addEventListener('click', startAppHandler);
             });
 
             // --- Language Translation Logic ---
@@ -535,7 +548,29 @@
                 setLanguage(newLang);
             });
             // --- End Language Translation Logic ---
+
+            // --- Scroll to Top Button Logic ---
+            const scrollToTopBtn = document.getElementById('scroll-to-top-btn');
+            const scrollDown = document.getElementById(`scroll-down`);
+            
+            const toggleScrollToTopBtn = () => {
+                if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
+                    scrollToTopBtn.style.display = "block";
+                    scrollDown.style.display="none";
+                } else {
+                    scrollToTopBtn.style.display = "none";
+                    scrollDown.style.display="block";
+                }
+            };
+
+            window.addEventListener('scroll', toggleScrollToTopBtn);
+
+            scrollToTopBtn.addEventListener('click', () => {
+                window.scrollTo({top: 0, behavior: 'smooth'});
+            });
+            // --- End Scroll to Top Button Logic ---
         });
     </script>
+<button class="start-btn" id="scroll-to-top-btn" style="display: none;">Top</button>
 </body>
 </html>

@@ -53,7 +53,12 @@ const MainMenu = ({ menuItems, currentMenuIndex, onMenuClick, onNavigate }) => {
               }
             }}
           >
-            <div className="slide-item">{item.title}</div>
+            {({ isActive }) => (
+              <>
+                {isActive && !(item.id == "home") && <div className="click-indicator">CLICK</div>}
+                <div className="slide-item">{item.title}</div>
+              </>
+            )}
           </SwiperSlide>
         ))}
       </Swiper>

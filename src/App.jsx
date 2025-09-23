@@ -27,6 +27,7 @@ const App = () => {
   const [initialData, setInitialData] = useState(null);
   
   const [isLoading, setIsLoading] = useState(true);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   // --- 추가된 부분: 모바일 브라우저의 높이 문제를 해결하기 위한 useEffect ---
   useEffect(() => {
@@ -103,6 +104,16 @@ const App = () => {
     }
   };
 
+  const handleSidebarNavigate = (pageId) => {
+    if (pageId === 'home') {
+      handleReturnToMain();
+    } else {
+      setInitialData(null);
+      setActivePage(pageId);
+    }
+    setIsSidebarOpen(false);
+  };
+
   const handleReturnToMain = () => {
     setActivePage('main');
     setSearchQuery('');
@@ -170,6 +181,28 @@ const App = () => {
   return (
     <div id="app-container">
       <div id="main-background"></div>
+
+      <button className="sidebar-toggle-btn" onClick={() => setIsSidebarOpen(!isSidebarOpen)}>
+        {isSidebarOpen ? 'X' : '☰'}
+      </button>
+
+      <div className={`sidebar-container ${isSidebarOpen ? 'open' : ''}`}>
+        <nav className="sidebar-nav">
+          {menuItems.map((item) => (
+            <a
+              key={item.id}
+              href="#"
+              className="sidebar-menu-item"
+              onClick={(e) => {
+                e.preventDefault();
+                handleSidebarNavigate(item.id);
+              }}
+            >
+              {item.title}
+            </a>
+          ))}
+        </nav>
+      </div>
 
       {activePage === 'main' ? (
         <div className="main-view">
