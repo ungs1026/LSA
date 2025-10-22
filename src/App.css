@@ -2063,7 +2063,7 @@ body {
   height: 50px;
   /* 좌측 상단으로 위치 고정 */
   top: 20px !important;
-  left: 20px !important;
+  left: 80px !important;
   position: fixed;
   cursor: pointer;
   padding: 0;
