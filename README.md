@@ -42,14 +42,14 @@
 - Three.js, Vanta.js, GSAP, crypto-js, react-youtube, supabase-js, swiper.js 등 다양한 기능을 가진 라이브러리를 사용하여 기능을 구현하였습니다.
 
 ### **Techniques**
-- [Front]
+#### **Front**
 * <img src="https://img.shields.io/badge/HTML5-E34F26?style=flat-square&logo=html5&logoColor=white"/> <img src="https://img.shields.io/badge/CSS3-1572B6?style=flat-square&logo=css3&logoColor=white"/> <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=flat-square&logo=javascript&logoColor=black"/>
 * <img src="https://img.shields.io/badge/React-61DAFB?style=flat-square&logo=React&logoColor=black"/>
-- [DB]
+#### **DB**
 * ![Supabase](https://img.shields.io/badge/Supabase-3ECF8E?style=for-the-badge&logo=supabase&logoColor=white)
-- [Tool]
+#### **Tool**
 * ![Visual Studio Code](https://img.shields.io/badge/Visual%20Studio%20Code-0078d7.svg?style=for-the-badge&logo=visual-studio-code&logoColor=white)
-- AI
+#### **AI**
 * ![Google Gemini](https://img.shields.io/badge/google%20gemini-8E75B2?style=for-the-badge&logo=google%20gemini&logoColor=white)
 ### **Distribution**
 - URL : <a href="https://lsa-blue.vercel.app/" target="_blank">LSA</a>
@@ -72,7 +72,7 @@
 ### **Index Page**
 ![Index Page](lsa_readme/index.gif)
 - **Index Page**입니다. 해당 페이지는 페이지 접근 직후 출력되는 랜딩 페이지 입니다.
-- 해당 프로젝트의 목적, 아키텍쳐, 클래스다이어그램, 주요 특징, 기술 스택, 공식 사이트와의 차이점을 출력합니다.
+- 해당 프로젝트의 목적, 아키텍쳐, 주요 특징, 기술 스택, 공식 사이트와의 차이점을 출력합니다.
 - Vanta.js를 이용하여 배경화면 구성하였습니다.
 - 스크롤 이벤트를 통해 애니메이션 동작을 구현하였습니다.
 
@@ -164,7 +164,7 @@
 <hr>
 
 ### **Credit Page**
-![Credit Page](lsa_readme/credit.mp4)
+![Credit Page](lsa_readme/credit.png)
 - **Credit Page**입니다. 해당 프로젝트의 목적, 후기, 이미지, 사용 기술, git 주소가 출력됩니다.
 - Three.js를 이용하여 배경화면에 바다가 파도치는 모습을 표현하였습니다.
 - 모달 대신 div를 생성하고 absolute로 설정하여 마우스를 이용해 클릭해서 움직이는 것이 가능하도록 만들었습니다.
