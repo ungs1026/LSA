@@ -42,13 +42,12 @@
 - Three.js, Vanta.js, GSAP, crypto-js, react-youtube, supabase-js, swiper.js 등 다양한 기능을 가진 라이브러리를 사용하여 기능을 구현하였습니다.
 
 ### **Techniques**
-- [**HTML5, CSS3, JavaScript**]
+- [Front]
 * <img src="https://img.shields.io/badge/HTML5-E34F26?style=flat-square&logo=html5&logoColor=white"/> <img src="https://img.shields.io/badge/CSS3-1572B6?style=flat-square&logo=css3&logoColor=white"/> <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=flat-square&logo=javascript&logoColor=black"/>
-- [**React.js** ]
 * <img src="https://img.shields.io/badge/React-61DAFB?style=flat-square&logo=React&logoColor=black"/>
-- [**Supabase**]
+- [DB]
 * ![Supabase](https://img.shields.io/badge/Supabase-3ECF8E?style=for-the-badge&logo=supabase&logoColor=white)
-- [**Visual Studio Code**]
+- [Tool]
 * ![Visual Studio Code](https://img.shields.io/badge/Visual%20Studio%20Code-0078d7.svg?style=for-the-badge&logo=visual-studio-code&logoColor=white)
 - AI
 * ![Google Gemini](https://img.shields.io/badge/google%20gemini-8E75B2?style=for-the-badge&logo=google%20gemini&logoColor=white)
